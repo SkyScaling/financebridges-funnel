@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>If You Couldn't Work Tomorrow, What Would You Lose? | FinanceBridges</title>
+<meta name="description" content="A 30-second check for self-employed Canadians. See how much of your income is exposed if you got sick or injured and couldn't work, and your options to protect it.">
+<meta property="og:title" content="If You Couldn't Work Tomorrow, What Would You Lose? | FinanceBridges">
+<meta property="og:description" content="Self-employed with no safety net? See how much income you'd lose if you couldn't work, and how to protect it. Takes 30 seconds.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F4F8F5">
+<link rel="icon" type="image/svg+xml" href="https://storage.googleapis.com/msgsndr/YD07511ANI6LBQQguuTM/media/6764d80563c0fec34cd9d5b3.svg">
+<link rel="apple-touch-icon" href="https://storage.googleapis.com/msgsndr/YD07511ANI6LBQQguuTM/media/6764d80563c0fec34cd9d5b3.svg">
+
+<!-- ================= CONFIG: EDIT THESE ================= -->
+<script>
+  window.FB_CONFIG = {
+    WEBHOOK_URL: "PASTE_FINANCEBRIDGES_WEBHOOK_URL_HERE",
+    BOOKING_URL: "PASTE_FINANCEBRIDGES_CALENDAR_EMBED_URL_HERE",
+    LOGO_URL: "Logo%20svg.svg",
+    RESOURCE_URL: "resource.html",
+    BOOKING_PAGE_URL: "booking.html"
+  };
+</script>
+<!-- ===================================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F4F8F5;
+    --panel:#FFFFFF;
+    --panel-2:#EDF4EF;
+    --border:rgba(13,42,28,0.10);
+    --border-strong:rgba(13,42,28,0.20);
+    --accent:#12A150;
+    --accent-2:#1FBF66;
+    --accent-d:#0E8543;
+    --accent-glow:rgba(18,161,80,0.32);
+    --accent-tint:rgba(18,161,80,0.10);
+    --grad:linear-gradient(135deg,#12A150 0%,#1FBF66 100%);
+    --text:#0C1F16;
+    --text-2:#48594F;
+    --text-3:#7C8A81;
+    --leaf:#EF4444;
+    --radius:16px;
+    --glow:0 20px 48px -22px var(--accent-glow);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  body{
+    background:var(--bg);color:var(--text);
+    font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;
+    min-height:100vh;min-height:100dvh;position:relative;overflow-x:hidden;
+  }
+  .bg-grid,.bg-glow{position:fixed;inset:0;pointer-events:none;z-index:0}
+  .bg-grid{
+    background-image:linear-gradient(rgba(13,42,28,0.045) 1px,transparent 1px),linear-gradient(90deg,rgba(13,42,28,0.045) 1px,transparent 1px);
+    background-size:54px 54px;
+    -webkit-mask-image:radial-gradient(ellipse 95% 65% at 50% 0%,#000 25%,transparent 78%);
+    mask-image:radial-gradient(ellipse 95% 65% at 50% 0%,#000 25%,transparent 78%);
+  }
+  .bg-glow{background:radial-gradient(620px 420px at 18% 6%,rgba(18,161,80,0.14),transparent 68%),radial-gradient(620px 520px at 84% 96%,rgba(18,161,80,0.10),transparent 70%);}
+  .wrap{position:relative;z-index:1;width:100%;margin:0;padding:0;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
+
+  header{width:100%;border-bottom:1px solid var(--border)}
+  .hdr-inner{max-width:1080px;margin:0 auto;padding:18px clamp(20px,4vw,40px);display:flex;align-items:center;justify-content:space-between}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Poppins';font-weight:800;font-size:18px;letter-spacing:-0.02em}
+  .logo img{height:33px;width:auto;display:block}
+  .logo .fallback{display:none;background:linear-gradient(135deg,#12A150,#1FBF66);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .pill{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent-d);border:1px solid var(--border-strong);background:var(--accent-tint);padding:8px 15px;border-radius:999px}
+
+  main{flex:1;width:100%;max-width:720px;margin:0 auto;padding:24px 22px 90px;display:flex;flex-direction:column;justify-content:safe center}
+  main:has(#s-result.active){justify-content:flex-start;padding-top:58px}
+  main:has(#s-result.dq.active){justify-content:center;padding-top:24px}
+  .screen{display:none}
+  .screen.active{display:block;animation:screenIn .45s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes screenIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  @keyframes slideR{from{opacity:0;transform:translateX(34px)}to{opacity:1;transform:none}}
+  @keyframes slideL{from{opacity:0;transform:translateX(-34px)}to{opacity:1;transform:none}}
+  @keyframes popIn{0%{opacity:0;transform:scale(.86)}60%{transform:scale(1.03)}100%{opacity:1;transform:scale(1)}}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+
+  /* INTRO */
+  .script{display:block;text-align:center;font-family:'Caveat',cursive;font-weight:700;font-size:clamp(27px,5.5vw,40px);color:var(--text-2);line-height:1;margin-bottom:25px}
+  .hero-title{font-family:'Poppins',sans-serif;font-weight:700;text-align:center;line-height:0.95;letter-spacing:-0.03em;font-size:clamp(56px,14vw,112px);text-transform:uppercase}
+  .hero-title .top{display:block}
+  .hero-title .hl{display:inline-block;background:var(--accent);color:#fff;padding:4px 22px 10px;border-radius:16px;box-shadow:var(--glow);margin-top:8px}
+  .hero-sub{text-align:center;color:var(--text-2);font-size:clamp(15px,2.4vw,18px);line-height:1.65;max-width:530px;margin:26px auto 0}
+  .hero-sub b{color:var(--text);font-weight:700}
+  #s-intro{padding-top:0}
+
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:34px 0 6px}
+  .stat{padding:22px 10px;text-align:center;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 4px 14px -8px rgba(13,42,28,0.10)}
+  .stat:last-child{border-right:none}
+  .stat .sico{color:var(--accent);display:flex;justify-content:center;margin-bottom:8px}
+  .stat .sico svg{width:22px;height:22px}
+  .stat .num{font-family:'Poppins';font-weight:800;font-size:28px;line-height:1;color:var(--text)}
+  .stat .lbl{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3);margin-top:8px}
+  .trust{text-align:center;color:var(--text-3);font-size:13px;margin-top:20px}
+
+  /* BUTTONS */
+  .btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border:none;cursor:pointer;text-decoration:none;
+    font-family:'Poppins';font-weight:700;font-size:15px;letter-spacing:0.03em;text-transform:uppercase;
+    padding:20px 24px;border-radius:14px;color:#fff;background:var(--accent);box-shadow:var(--glow);
+    transition:transform .15s ease,box-shadow .2s ease,background .2s ease,opacity .2s ease}
+  .btn:hover{transform:translateY(-2px);background:var(--accent-d);box-shadow:0 26px 70px -18px var(--accent-glow)}
+  .btn:active{transform:translateY(0)}
+  .btn .arrow{transition:transform .2s ease;display:inline-flex}
+  .btn:hover .arrow{transform:translateX(5px)}
+  .btn.big{margin-top:28px}
+  .back{display:block;margin:22px auto 0;background:none;border:none;color:var(--text-3);font-family:'Inter';font-size:14px;cursor:pointer;width:100%;transition:color .15s}
+  .back:hover{color:var(--text-2)}
+
+  /* QUIZ */
+  .q-count{font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-3);margin-bottom:12px}
+  .progress{display:flex;gap:7px;margin-bottom:30px}
+  .progress span{flex:1;height:5px;border-radius:99px;background:rgba(148,160,196,0.16);overflow:hidden}
+  .progress span i{display:block;height:100%;width:0;background:var(--grad);border-radius:99px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+  .progress span.done i{width:100%}
+  .q-title{font-family:'Poppins';font-weight:800;font-size:clamp(27px,5.2vw,42px);line-height:1.08;letter-spacing:-0.02em;color:var(--text)}
+  .q-sub{color:var(--text-3);font-size:14px;margin-top:10px}
+
+  .opts{display:flex;flex-direction:column;gap:12px;margin-top:26px}
+  .opt{display:flex;align-items:center;gap:15px;padding:16px 18px;border:1px solid var(--border);border-radius:var(--radius);
+    background:var(--panel);color:var(--text);cursor:pointer;text-align:left;width:100%;font-family:inherit;
+    transition:border-color .16s ease,background .16s ease,transform .12s ease,box-shadow .16s ease}
+  .opt:hover{border-color:var(--border-strong);background:var(--panel-2);transform:translateY(-1px)}
+  .opt.sel{border-color:var(--accent);background:var(--accent-tint);box-shadow:0 0 0 1px var(--accent) inset,0 14px 40px -20px var(--accent-glow)}
+  .opt .oico{flex:none;width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    background:rgba(148,160,196,0.10);border:1px solid var(--border);color:var(--text-2);transition:.16s}
+  .opt .oico svg{width:24px;height:24px}
+  .opt.sel .oico{background:var(--accent);border-color:transparent;color:#fff}
+  .opt .otxt{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+  .opt .ot{font-family:'Inter';font-weight:600;font-size:16px;line-height:1.3;color:var(--text)}
+  .opt .os{color:var(--text-3);font-size:13px;line-height:1.3}
+  .opt .radio{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid var(--border-strong);position:relative;transition:border-color .16s}
+  .opt.sel .radio{border-color:var(--accent)}
+  .opt.sel .radio::after{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--accent)}
+
+  /* LOADING */
+  #s-loading{text-align:center;padding:30px 0}
+  .loader{position:relative;width:150px;height:150px;margin:10px auto 30px}
+  .loader .halo{position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,var(--accent-glow),transparent 62%);filter:blur(6px);animation:pulse 1.8s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.5;transform:scale(.92)}50%{opacity:1;transform:scale(1.05)}}
+  .loader svg{position:relative;transform:rotate(-90deg)}
+  .loader .lpct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Poppins';font-weight:800;font-size:34px;color:var(--text)}
+  .load-title{font-family:'Poppins';font-weight:800;font-size:clamp(22px,4.6vw,30px);text-transform:uppercase;letter-spacing:-0.01em;
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .load-sub{color:var(--text-3);font-size:14px;margin-top:10px}
+
+  /* RESULT */
+  .r-eyebrow{text-align:center;font-family:'Poppins';font-size:13px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent)}
+  .r-script{text-align:center;font-family:'Caveat',cursive;font-weight:700;font-size:clamp(27px,5vw,36px);color:var(--text-2);margin:14px 0 0;line-height:1}
+  .num-box{background:var(--accent);border-radius:20px;padding:34px 22px;text-align:center;box-shadow:var(--glow);margin-top:16px;animation:popIn .6s cubic-bezier(.2,.8,.2,1) both}
+  .num-big{font-family:'Poppins';font-weight:800;font-size:clamp(52px,13vw,92px);line-height:1;color:#fff;letter-spacing:-0.03em}
+  .num-cap{font-family:'Poppins';font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-top:8px}
+  .num-div{height:1px;background:rgba(255,255,255,0.25);margin:22px auto;max-width:260px}
+  .num-annual{font-family:'Poppins';font-weight:800;font-size:clamp(26px,6vw,40px);color:#fff;line-height:1}
+  .num-annual-cap{font-family:'Poppins';font-weight:700;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.8);margin-top:6px}
+  .r-line{text-align:center;color:var(--text-2);font-size:15px;line-height:1.6;max-width:480px;margin:24px auto 0}
+
+  .msg-box{border:1px solid var(--border-strong);background:var(--panel);border-radius:20px;padding:30px 24px;text-align:center;margin-top:14px;animation:popIn .55s ease both}
+  .msg-box .mi{color:var(--accent);display:flex;justify-content:center;margin-bottom:14px}
+  .msg-box .mi svg{width:40px;height:40px}
+  .msg-box h2{font-family:'Poppins';font-weight:800;font-size:clamp(22px,4.6vw,28px);letter-spacing:-0.02em}
+  .msg-box p{color:var(--text-2);font-size:15px;line-height:1.65;margin-top:12px}
+
+  .diag{border:1px solid var(--border-strong);border-radius:var(--radius);background:var(--panel);padding:22px;margin:26px 0}
+  .diag h3{font-family:'Poppins';font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-2);margin-bottom:16px}
+  .diag ul{list-style:none;display:flex;flex-direction:column;gap:14px}
+  .diag li{display:flex;gap:13px;align-items:flex-start;font-size:15px;line-height:1.5;color:var(--text)}
+  .diag li .dot{flex:none;width:26px;height:26px;border-radius:8px;background:var(--accent-tint);color:var(--accent);display:flex;align-items:center;justify-content:center}
+  .diag li .dot svg{width:15px;height:15px}
+
+  .cta-card{border:1px solid var(--border-strong);border-radius:20px;background:linear-gradient(180deg,var(--panel-2),var(--panel));padding:28px 22px}
+  .cta-card h2{font-family:'Poppins';font-weight:800;font-size:clamp(21px,4.4vw,27px);letter-spacing:-0.02em;text-align:center;line-height:1.2}
+  .cta-card .csub{color:var(--text-2);font-size:14.5px;text-align:center;margin:12px auto 22px;max-width:420px;line-height:1.6}
+  #r-cta-ico{display:flex;justify-content:center}
+  #r-cta-ico svg{width:46px;height:46px;color:var(--accent);margin-bottom:14px}
+  .field{margin-bottom:13px}
+  .frow{display:flex;gap:11px}
+  .frow .field{flex:1}
+  .field input{width:100%;padding:17px 16px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,0.03);color:var(--text);font-family:'Inter';font-size:16px;transition:border-color .15s,background .15s}
+  .field input::placeholder{color:var(--text-3)}
+  .field input:focus{outline:none;border-color:var(--accent);background:var(--accent-tint)}
+  .field input.invalid{border-color:var(--leaf)}
+  .err{color:var(--leaf);font-size:12.5px;margin-top:6px;display:none}
+  .err.show{display:block}
+  .privacy{text-align:center;color:var(--text-3);font-size:12px;margin-top:15px;line-height:1.5}
+
+  /* BOOKING / THANKS */
+  .center-head{text-align:center;margin-bottom:26px;padding-top:6px}
+  .center-head h2{font-family:'Poppins';font-weight:800;font-size:clamp(26px,5.2vw,38px);letter-spacing:-0.02em;line-height:1.1;text-transform:uppercase}
+  .center-head p{color:var(--text-2);font-size:15px;line-height:1.6;max-width:460px;margin:14px auto 0}
+  .cta-points{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;margin:20px 0 10px}
+  .cta-points span{font-size:13px;color:var(--text-2);display:flex;align-items:center;gap:7px}
+  .cta-points span svg{width:15px;height:15px;color:var(--accent)}
+  #booking-mount iframe{width:100%;min-height:720px;border:none;border-radius:var(--radius);background:#fff;margin-top:10px}
+  .thanks-ico{color:var(--accent);display:flex;justify-content:center;margin-bottom:18px;animation:floaty 3s ease-in-out infinite}
+  .thanks-ico svg{width:64px;height:64px}
+
+  footer{text-align:center;color:var(--text-3);font-size:12px;margin-top:36px;padding-top:22px;border-top:1px solid var(--border)}
+  footer b{color:var(--text-2)}
+
+  @media (max-width:520px){
+    .hdr-inner{padding-top:21px;padding-bottom:21px}
+    .logo img{height:27px}
+    main{padding:16px 16px 72px}
+    .stat{padding:18px 6px}.stat .num{font-size:23px}
+    .opt{padding:14px 14px;gap:13px}.opt .oico{width:44px;height:44px}
+    .num-box{padding:28px 16px}
+    .frow{flex-direction:column;gap:0}
+    .script{margin-bottom:10px}
+    .stats{margin:22px 0 6px}
+    main:has(#s-quiz.active),main:has(#s-result.active){justify-content:flex-start;padding-top:42px}
+    main:has(#s-result.dq.active){justify-content:center;padding-top:16px}
+  }
+</style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1532837473873011');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7KHYYF9BFV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7KHYYF9BFV');
+</script>
+<!-- End Google Analytics -->
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+
+<div class="wrap">
+  <header><div class="hdr-inner">
+    <div class="logo"><img id="logo-img" alt="FinanceBridges" src=""><span class="fallback">FinanceBridges</span></div>
+    <span class="pill">Free Assessment</span>
+  </div></header>
+
+  <main>
+    <!-- INTRO -->
+    <section class="screen active" id="s-intro">
+      <span class="script">If you couldn't work tomorrow,</span>
+      <h1 class="hero-title"><span class="top">Who Pays</span><span class="hl">The Bills?</span></h1>
+      <p class="hero-sub">You're self-employed, so if you get sick or hurt and can't work, your income stops. But your <b>mortgage, rent, and groceries</b> don't. See what's on the line, and how to cover it.</p>
+      <div class="stats" id="intro-stats"></div>
+      <button class="btn big" onclick="Funnel.start()">Show me what's at risk <span class="arrow">&rarr;</span></button>
+      <p class="trust">Matched with a licensed Canadian advisor. Free, no obligation, about a minute.</p>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="screen" id="s-quiz">
+      <div id="q-stage">
+        <div class="q-count" id="q-count"></div>
+        <div class="progress" id="q-progress"></div>
+        <h2 class="q-title" id="q-title"></h2>
+        <p class="q-sub" id="q-sub"></p>
+        <div class="opts" id="q-opts"></div>
+      </div>
+      <button class="back" onclick="Funnel.back()">&larr; Back</button>
+    </section>
+
+    <!-- LOADING -->
+    <section class="screen" id="s-loading">
+      <div class="loader">
+        <div class="halo"></div>
+        <svg width="150" height="150" viewBox="0 0 150 150">
+          <circle cx="75" cy="75" r="66" fill="none" stroke="rgba(148,160,196,0.14)" stroke-width="9"/>
+          <circle id="load-ring" cx="75" cy="75" r="66" fill="none" stroke="#12A150" stroke-width="9" stroke-linecap="round" stroke-dasharray="414.7" stroke-dashoffset="414.7"/>
+        </svg>
+        <div class="lpct" id="load-pct">0%</div>
+      </div>
+      <div class="load-title">Calculating what's at risk</div>
+      <div class="load-sub" id="load-sub">Analyzing your 6 answers...</div>
+    </section>
+
+    <!-- RESULT -->
+    <section class="screen" id="s-result">
+      <div id="r-top"></div>
+      <div id="r-diag-wrap"></div>
+      <div class="cta-card">
+        <div id="r-cta-ico"></div>
+        <h2 id="r-form-title">See Your Options</h2>
+        <p class="csub" id="r-form-sub">Enter your details and a licensed advisor will walk you through exactly what it would take to protect this, on a quick no-pressure call. No obligation, no jargon.</p>
+        <form id="lead-form" novalidate>
+          <div class="frow">
+            <div class="field"><input id="f-first" type="text" autocomplete="given-name" placeholder="First name"><div class="err" id="e-first">Enter your first name.</div></div>
+            <div class="field"><input id="f-last" type="text" autocomplete="family-name" placeholder="Last name"><div class="err" id="e-last">Enter your last name.</div></div>
+          </div>
+          <div class="field"><input id="f-email" type="email" autocomplete="email" placeholder="Your email"><div class="err" id="e-email">Please enter a valid email.</div></div>
+          <div class="field"><input id="f-phone" type="tel" autocomplete="tel" placeholder="Your phone"><div class="err" id="e-phone">Please enter a valid phone number.</div></div>
+          <button class="btn big" type="submit" id="f-submit">See my options <span class="arrow">&rarr;</span></button>
+          <p class="privacy">&#128274; Your info stays private. No spam, ever.</p>
+        </form>
+        <div id="r-resource" style="display:none">
+          <a class="btn big" id="r-resource-btn" href="#">See the free resource <span class="arrow">&rarr;</span></a>
+          <p class="privacy">No pitch. Just the exact steps to get ready.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKING -->
+    <section class="screen" id="s-booking">
+      <div class="center-head">
+        <h2>Let's Walk You Through It.</h2>
+        <p id="book-sub">Pick a time for your free 15-minute strategy call. We'll map exactly how to capture what you're leaving on the table.</p>
+        <div class="cta-points">
+          <span id="cp1">15-min call</span>
+          <span id="cp2">Honest fit check</span>
+          <span id="cp3">Custom plan</span>
+        </div>
+      </div>
+      <div id="booking-mount"></div>
+    </section>
+
+    <!-- THANKS (disqualified) -->
+    <section class="screen" id="s-thanks">
+      <div class="thanks-ico" id="thanks-ico"></div>
+      <div class="center-head">
+        <h2 id="thanks-title">Thanks for being honest.</h2>
+        <p id="thanks-msg"></p>
+      </div>
+      <footer><b>FinanceBridges</b> &#127809; Income protection for self-employed Canadians.</footer>
+    </section>
+  </main>
+</div>
+
+<script src="https://link.skyscaling.com/js/form_embed.js"></script>
+<script>
+(function(){
+  "use strict";
+  var CFG = window.FB_CONFIG || {};
+  var FAST = !!window.SKY_TEST;
+  var ADV = FAST?0:340, LOAD=FAST?0:2500;
+
+  var li = document.getElementById('logo-img');
+  if(CFG.LOGO_URL){ li.src = CFG.LOGO_URL; }
+  li.onerror = function(){ li.style.display='none'; document.querySelector('.logo .fallback').style.display='inline-block'; };
+  if(!CFG.LOGO_URL){ li.onerror(); }
+
+  // ---------- icons (Lucide-style) ----------
+  var P = {
+    shield:'<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',
+    clock:'<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+    user:'<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+    users:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+    family:'<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+    sprout:'<path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/>',
+    trend:'<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
+    bars:'<line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/>',
+    award:'<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>',
+    flame:'<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>',
+    layers:'<path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/>',
+    bulb:'<path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/>',
+    xc:'<circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/>',
+    crown:'<path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"/><path d="M5 21h14"/>',
+    dollar:'<line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',
+    coins:'<circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/>',
+    note:'<rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/>',
+    bank:'<line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/>',
+    plus:'<circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/>',
+    cal:'<rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 2v4"/><path d="M16 2v4"/>',
+    calc:'<rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 2v4"/><path d="M16 2v4"/><path d="m9 16 2 2 4-4"/>',
+    inf:'<path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4Z"/>',
+    rocket:'<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>',
+    search:'<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+    target:'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+    zap:'<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>',
+    dice:'<rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 8h.01"/><path d="M16 16h.01"/><path d="M12 12h.01"/>',
+    check:'<path d="M20 6 9 17l-5-5"/>',
+    party:'<path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 12"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/>'
+  };
+  function icon(n){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+(P[n]||P.target)+'</svg>'; }
+  var PALETTE=['#12A150','#0EA5E9','#F59E0B','#14B8A6','#8B5CF6','#EC4899'];
+
+  // ---------- questions (Gabriel's qualification + calc inputs) ----------
+  var QUESTIONS = [
+    { id:'work', q:'Are you self-employed or running your own business as your main income?', opts:[
+      {ic:'user', t:'Yes, self-employed / sole proprietor', v:'sole'},
+      {ic:'bank', t:'Yes, I own an incorporated business', v:'inc'},
+      {ic:'layers', t:"It's a side income, not my main", v:'side', dq:true},
+      {ic:'xc', t:"No, I'm an employee", v:'employee', dq:true}
+    ]},
+    { id:'income', q:'Roughly what do you take home each month from your business?', opts:[
+      {ic:'dollar', t:'Under $4,000', v:'u4k'},
+      {ic:'coins', t:'$4,000 to $7,000', v:'m4_7'},
+      {ic:'note', t:'$7,000 to $10,000', v:'m7_10'},
+      {ic:'bank', t:'$10,000 to $20,000', v:'m10_20'},
+      {ic:'crown', t:'$20,000+', v:'m20plus'}
+    ]},
+    { id:'runway', q:'If your income stopped tomorrow, how long could your savings cover your bills?', opts:[
+      {ic:'zap', t:'Less than a month', v:'lt1m'},
+      {ic:'clock', t:'1 to 3 months', v:'m1_3'},
+      {ic:'cal', t:'3 to 6 months', v:'m3_6r'},
+      {ic:'shield', t:'6 months or more', v:'m6plus'}
+    ]},
+    { id:'coverage', q:'Do you have any income protection or disability coverage right now?', sub:'Critical illness, disability, or accident coverage', opts:[
+      {ic:'xc', t:'No, nothing', v:'none'},
+      {ic:'search', t:"I'm not sure", v:'unsure'},
+      {ic:'layers', t:"Some, but not sure it's enough", v:'some'},
+      {ic:'shield', t:"Yes, I'm fully covered", v:'covered', dq:true}
+    ]},
+    { id:'dependents', q:"Who's counting on your income if you couldn't work?", opts:[
+      {ic:'user', t:'Just me', v:'self'},
+      {ic:'users', t:'Me and my partner', v:'partner'},
+      {ic:'family', t:'My kids and family', v:'family'},
+      {ic:'layers', t:'Others depend on me too', v:'others'}
+    ]},
+    { id:'timeline', q:"If there's an affordable way to protect your income, how soon would you want it in place?", opts:[
+      {ic:'rocket', t:'Right away', v:'now'},
+      {ic:'zap', t:'Within a month', v:'d30'},
+      {ic:'search', t:'Just exploring for now', v:'exploring'}
+    ]}
+  ];
+
+  var state = { i:0, dir:1, answers:{}, contact:{}, tracking:{}, result:null, qualified:true, dqReason:null, sent:false, advancing:false };
+
+  (function(){
+    var p = new URLSearchParams(window.location.search);
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid','ttclid'].forEach(function(k){
+      var v=p.get(k); if(v) state.tracking[k]=v;
+    });
+    state.tracking.landing_url = window.location.href;
+    state.tracking.referrer = document.referrer||'';
+  })();
+
+  // intro stats
+  document.getElementById('intro-stats').innerHTML =
+    '<div class="stat"><div class="sico" style="color:#12A150">'+icon('clock')+'</div><div class="num">1</div><div class="lbl">Min to finish</div></div>'+
+    '<div class="stat"><div class="sico" style="color:#1FBF66">'+icon('target')+'</div><div class="num">6</div><div class="lbl">Questions</div></div>'+
+    '<div class="stat"><div class="sico" style="color:#12A150">'+icon('check')+'</div><div class="num">500+</div><div class="lbl">Covered</div></div>';
+
+  function show(id){
+    var l=document.querySelectorAll('.screen');
+    for(var i=0;i<l.length;i++) l[i].classList.remove('active');
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  function anim(el,name){ el.style.animation='none'; void el.offsetWidth; el.style.animation=name; }
+
+  function renderQuestion(){
+    var Q = QUESTIONS[state.i];
+    document.getElementById('q-count').textContent = 'Question '+(state.i+1)+' / '+QUESTIONS.length;
+    var prog=document.getElementById('q-progress'); prog.innerHTML='';
+    for(var j=0;j<QUESTIONS.length;j++){
+      var seg=document.createElement('span'); if(j<=state.i) seg.className='done';
+      var fill=document.createElement('i'); seg.appendChild(fill); prog.appendChild(seg);
+    }
+    document.getElementById('q-title').textContent=Q.q;
+    var sub=document.getElementById('q-sub'); sub.textContent=Q.sub||''; sub.style.display=Q.sub?'block':'none';
+
+    var wrap=document.getElementById('q-opts'); wrap.innerHTML='';
+    var chosen=state.answers[Q.id];
+    Q.opts.forEach(function(o,idx){
+      var b=document.createElement('button'); b.type='button'; b.className='opt'+(chosen===o.v?' sel':'');
+      var oico=document.createElement('span'); oico.className='oico'; oico.innerHTML=icon(o.ic); var __c=PALETTE[idx%PALETTE.length]; oico.style.color=__c; oico.style.background=__c+'22'; oico.style.borderColor=__c+'55';
+      var otxt=document.createElement('span'); otxt.className='otxt';
+      var ot=document.createElement('span'); ot.className='ot'; ot.textContent=o.t; otxt.appendChild(ot);
+      if(o.s){ var os=document.createElement('span'); os.className='os'; os.textContent=o.s; otxt.appendChild(os); }
+      var rad=document.createElement('span'); rad.className='radio';
+      b.appendChild(oico); b.appendChild(otxt); b.appendChild(rad);
+      b.onclick=function(){ choose(Q,o,b,wrap); };
+      wrap.appendChild(b);
+    });
+    anim(document.getElementById('q-stage'), (state.dir<0?'slideL':'slideR')+' .4s cubic-bezier(.2,.7,.2,1) both');
+  }
+
+  function choose(Q,o,b,wrap){
+    if(state.advancing) return;
+    state.answers[Q.id]=o.v;
+    if(window.gtag){ gtag('event','quiz_answer',{step:state.i+1,question:Q.id,answer:o.t}); }
+    var all=wrap.querySelectorAll('.opt'); for(var k=0;k<all.length;k++) all[k].classList.remove('sel');
+    b.classList.add('sel');
+    state.advancing=true;
+    setTimeout(function(){ state.advancing=false; state.dir=1;
+      if(state.i<QUESTIONS.length-1){ state.i++; renderQuestion(); }
+      else { goToResult(); }
+    }, ADV);
+  }
+
+  // ---------- qualify + calc ----------
+  function evaluate(){
+    var a=state.answers, reason=null;
+    for(var i=0;i<QUESTIONS.length;i++){
+      var Q=QUESTIONS[i], v=a[Q.id];
+      var o=Q.opts.filter(function(x){return x.v===v;})[0];
+      if(o && o.dq && !reason){
+        if(Q.id==='work' && v==='employee') reason='employee';
+        else if(Q.id==='work' && v==='side') reason='side';
+        else if(Q.id==='coverage' && v==='covered') reason='covered';
+        else reason='other';
+      }
+    }
+    state.qualified = !reason;
+    state.dqReason = reason;
+  }
+
+  function calc(){
+    var a=state.answers;
+    /* Hero = a full year of their own income, exposed if they couldn't work.
+       Runway = how long their savings would hold, used to twist the knife. */
+    var monthlyMap={u4k:3000,m4_7:5500,m7_10:8500,m10_20:15000,m20plus:25000};
+    var monthly=monthlyMap[a.income]||5500;
+    var annual=monthly*12;
+    var runwayMap={lt1m:'less than a month',m1_3:'roughly 1 to 3 months',m3_6r:'roughly 3 to 6 months',m6plus:'6 months or more'};
+    var runway=runwayMap[a.runway]||'only a few weeks';
+    state.result={monthly:monthly,annual:annual,runway:runway};
+    return state.result;
+  }
+
+  function money(n){ return '$'+Number(n).toLocaleString('en-US'); }
+
+  function diagnosis(){
+    var a=state.answers,out=[];
+    if(a.runway==='lt1m'||a.runway==='m1_3')
+      out.push("Your savings would run out fast, but the bills would keep coming every month.");
+    if(a.coverage==='none'||a.coverage==='unsure')
+      out.push("You have no income protection in place, so right now it all falls on you.");
+    else if(a.coverage==='some')
+      out.push("The coverage you have may not be enough to actually replace your income.");
+    out.push("You're self-employed, so there's no employer sick pay and no group plan behind you.");
+    if(a.dependents==='partner'||a.dependents==='family'||a.dependents==='others')
+      out.push("You're not the only one relying on this income, if it stops, they feel it too.");
+    var seen={},f=[]; out.forEach(function(t){ if(!seen[t]&&f.length<3){seen[t]=1;f.push(t);} });
+    return f;
+  }
+
+  function goToResult(){
+    evaluate();
+    if(window.gtag){ gtag('event','quiz_complete',{qualified:state.qualified}); if(!state.qualified) gtag('event','quiz_disqualified',{dq_reason:state.dqReason||'other'}); }
+    show('s-loading');
+    startLoader(function(){ renderResult(); show('s-result'); });
+  }
+
+  function startLoader(done){
+    var ring=document.getElementById('load-ring'), pct=document.getElementById('load-pct'), sub=document.getElementById('load-sub');
+    var C=414.7, start=Date.now();
+    var msgs=['Analyzing your '+QUESTIONS.length+' answers...','Calculating your income at risk...','Building your personalized snapshot...'];
+    if(FAST){ ring.style.strokeDashoffset=0; pct.textContent='100%'; setTimeout(done,0); return; }
+    var iv=setInterval(function(){
+      var t=Math.min(1,(Date.now()-start)/LOAD);
+      var e=1-Math.pow(1-t,3);
+      ring.style.strokeDashoffset=String(C*(1-e));
+      pct.textContent=Math.round(e*100)+'%';
+      if(sub){ sub.textContent=msgs[Math.min(msgs.length-1,Math.floor(t*msgs.length))]; }
+      if(t>=1){ clearInterval(iv); setTimeout(done,220); }
+    },16);
+  }
+
+  function countUp(el,target){
+    if(FAST){ el.textContent=money(target); return; }
+    var start=Date.now(),dur=1100;
+    var iv=setInterval(function(){
+      var t=Math.min(1,(Date.now()-start)/dur), e=1-Math.pow(1-t,3);
+      el.textContent=money(Math.round(target*e/100)*100);
+      if(t>=1){ clearInterval(iv); el.textContent=money(target); }
+    },16);
+  }
+
+  var DQ_MSG={
+    employee:{title:'This one is built for the self-employed.', msg:"Coverage like this matters most when you don't have an employer's sick pay or a group plan behind you. As an employee you likely have some safety net already, so this wouldn't be the right fit."},
+    side:{title:'This is for your main income.', msg:"This is built for people whose business is their main income. If it's a side thing with a job behind it, you've got more of a cushion, so it's not the right fit right now."},
+    covered:{title:"Sounds like you're already covered.", msg:"If you've already got solid income protection in place, you're ahead of most self-employed people, and there's nothing more you need from us right now. That's a good spot to be in."},
+    other:{title:'Not the right fit right now.', msg:"Based on your answers, this isn't quite the right fit at the moment. No hard feelings."}
+  };
+
+  function renderResult(){
+    var top=document.getElementById('r-top');
+    var diagWrap=document.getElementById('r-diag-wrap');
+    var _rs=document.getElementById('s-result'); if(_rs) _rs.classList.toggle('dq', !state.qualified);
+    if(state.qualified){
+      calc();
+      document.getElementById('lead-form').style.display='';
+      document.getElementById('r-resource').style.display='none';
+      document.getElementById('r-cta-ico').innerHTML='';
+      top.innerHTML=
+        '<div class="r-eyebrow">&lt; The real number &gt;</div>'+
+        '<div class="r-script">If you couldn’t work, you’d have about</div>'+
+        '<div class="num-box">'+
+          '<div class="num-big" id="r-annual">$0</div>'+
+          '<div class="num-cap">Of income on the line this year</div>'+
+          '<div class="num-div"></div>'+
+          '<div class="num-annual">'+money(state.result.monthly)+' a month, gone</div>'+
+          '<div class="num-annual-cap">The day you can’t work</div>'+
+        '</div>'+
+        '<p class="r-basis" style="text-align:center;color:var(--text-3);font-size:12.5px;line-height:1.55;max-width:470px;margin:16px auto 0">That’s a full year of your own income if you got sick or hurt and couldn’t work. Your savings would cover '+state.result.runway+'. After that, the mortgage, rent, and groceries don’t stop.</p>';
+      var ds=diagnosis(),html='<div class="diag"><h3>What’s leaving you exposed</h3><ul>';
+      ds.forEach(function(t){ html+='<li><span class="dot">'+icon('zap')+'</span><span>'+t+'</span></li>'; });
+      diagWrap.innerHTML=html+'</ul></div>';
+      document.getElementById('r-form-title').textContent='See Your Options';
+      document.getElementById('r-form-sub').textContent='Enter your details and a licensed advisor will walk you through exactly what it would take to protect this, on a quick no-pressure call. No obligation, no jargon.';
+      document.getElementById('f-submit').innerHTML='See my options <span class="arrow">&rarr;</span>';
+      countUp(document.getElementById('r-annual'), state.result.annual);
+    } else {
+      var m=DQ_MSG[state.dqReason]||DQ_MSG.other;
+      top.innerHTML='<div class="r-eyebrow" style="margin-bottom:20px">&lt; Straight talk &gt;</div>';
+      diagWrap.innerHTML='';
+      document.getElementById('r-cta-ico').innerHTML=icon('shield');
+      document.getElementById('lead-form').style.display='none';
+      document.getElementById('r-resource').style.display='';
+      document.getElementById('r-form-title').textContent=m.title;
+      document.getElementById('r-form-sub').textContent=m.msg;
+      document.getElementById('r-resource-btn').setAttribute('href', withTracking(CFG.RESOURCE_URL||'resource.html'));
+    }
+  }
+
+  function payload(){
+    var a=state.answers;
+    function label(qid,val){
+      for(var i=0;i<QUESTIONS.length;i++){ if(QUESTIONS[i].id===qid){
+        var o=QUESTIONS[i].opts.filter(function(x){return x.v===val;})[0]; return o?o.t:val; } }
+      return val;
+    }
+    var d={
+      firstName:state.contact.firstName, lastName:state.contact.lastName, email:state.contact.email, phone:state.contact.phone,
+      source:'FinanceBridges Income Protection Funnel',
+      qualified:state.qualified, dq_reason:state.dqReason,
+      estimated_monthly:state.result?state.result.monthly:null,
+      estimated_annual:state.result?state.result.annual:null,
+      submitted_at:new Date().toISOString()
+    };
+    Object.keys(a).forEach(function(k){ d['q_'+k]=a[k]; d['q_'+k+'_label']=label(k,a[k]); });
+    Object.keys(state.tracking).forEach(function(k){ d[k]=state.tracking[k]; });
+    return d;
+  }
+  function sendLead(){
+    if(state.sent) return Promise.resolve(); state.sent=true;
+    var url=CFG.WEBHOOK_URL;
+    if(!url){ console.log('[FinanceBridges] No WEBHOOK_URL set. Payload:', payload()); return Promise.resolve(); }
+    return fetch(url,{method:'POST',keepalive:true,headers:{'Content-Type':'application/json'},body:JSON.stringify(payload())})
+      .catch(function(e){ console.warn('[FinanceBridges] Webhook failed:',e); });
+  }
+  function withTracking(u){ var qp=new URLSearchParams(); Object.keys(state.tracking).forEach(function(k){ qp.set(k,state.tracking[k]); }); var q=qp.toString(); return q?(u+(u.indexOf('?')>-1?'&':'?')+q):u; }
+  function bookingSrc(){
+    var base=CFG.BOOKING_URL||'',c=state.contact||{},qp=new URLSearchParams();
+    if(c.firstName) qp.set('first_name',c.firstName);
+    if(c.lastName) qp.set('last_name',c.lastName);
+    if(c.email) qp.set('email',c.email);
+    if(c.phone) qp.set('phone',c.phone);
+    Object.keys(state.tracking).forEach(function(k){ qp.set(k,state.tracking[k]); });
+    return base+(base.indexOf('?')>-1?'&':'?')+qp.toString();
+  }
+
+  function validEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function validPhone(v){ return v.replace(/\D/g,'').length>=10; }
+
+  document.getElementById('lead-form').addEventListener('submit',async function(e){
+    e.preventDefault();
+    var first=document.getElementById('f-first').value.trim();
+    var last=document.getElementById('f-last').value.trim();
+    var email=document.getElementById('f-email').value.trim();
+    var phone=document.getElementById('f-phone').value.trim();
+    var ok=true;
+    function mark(id,eid,good){ document.getElementById(id).classList.toggle('invalid',!good); document.getElementById(eid).classList.toggle('show',!good); if(!good) ok=false; }
+    mark('f-first','e-first',first.length>=1);
+    mark('f-last','e-last',last.length>=1);
+    mark('f-email','e-email',validEmail(email));
+    mark('f-phone','e-phone',validPhone(phone));
+    if(!ok) return;
+    state.contact={firstName:first,lastName:last,email:email,phone:phone};
+    var sendP=sendLead();
+    if(state.qualified){
+      if(window.gtag){ gtag('event','lead_submit',{value:(state.result&&state.result.monthly)||0}); }
+      var c=state.contact, qp=new URLSearchParams();
+      if(c.firstName) qp.set('first_name',c.firstName);
+      if(c.lastName) qp.set('last_name',c.lastName);
+      if(c.email) qp.set('email',c.email);
+      if(c.phone) qp.set('phone',c.phone);
+      if(state.result&&state.result.monthly) qp.set('est',state.result.monthly);
+      Object.keys(state.tracking).forEach(function(k){ qp.set(k,state.tracking[k]); });
+      var dest=(CFG.BOOKING_PAGE_URL||'booking.html');
+      try{ await Promise.race([sendP, new Promise(function(res){setTimeout(res,2000);})]); }catch(_){ }
+      window.location.href=dest+(dest.indexOf('?')>-1?'&':'?')+qp.toString();
+      return;
+    } else {
+      document.getElementById('thanks-ico').innerHTML=icon('shield');
+      document.getElementById('thanks-title').textContent='Thanks, '+first+'.';
+      var m=DQ_MSG[state.dqReason]||DQ_MSG.other;
+      document.getElementById('thanks-msg').textContent="We've saved your details. If anything changes, come back any time. "+m.msg;
+      show('s-thanks');
+    }
+  });
+
+  window.Funnel={
+    start:function(){ if(window.gtag) gtag('event','quiz_start'); state.i=0; state.dir=1; renderQuestion(); show('s-quiz'); },
+    back:function(){ state.dir=-1; if(state.i>0){ state.i--; renderQuestion(); } else { show('s-intro'); } }
+  };
+
+  document.addEventListener('keydown',function(e){
+    if(!document.getElementById('s-quiz').classList.contains('active')) return;
+    var n=parseInt(e.key,10);
+    if(n>=1){ var opts=document.querySelectorAll('#q-opts .opt'); if(opts[n-1]) opts[n-1].click(); }
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Your Call | FinanceBridges</title>
+<meta name="description" content="Pick a time and a licensed Canadian advisor will show you exactly what it takes to protect your income.">
+<meta name="theme-color" content="#F4F8F5">
+<link rel="icon" type="image/svg+xml" href="https://storage.googleapis.com/msgsndr/YD07511ANI6LBQQguuTM/media/6764d80563c0fec34cd9d5b3.svg">
+<link rel="apple-touch-icon" href="https://storage.googleapis.com/msgsndr/YD07511ANI6LBQQguuTM/media/6764d80563c0fec34cd9d5b3.svg">
+
+<!-- ================= CONFIG: EDIT THESE ================= -->
+<script>
+  window.FB_CONFIG = {
+    LOGO_URL: "Logo%20svg.svg",
+    BOOKING_URL: "https://link.skyscaling.com/widget/booking/rLGPaOAVSXNYVz9PEd0x",
+    THANKYOU_URL: "thank-you.html",   /* page people land on AFTER they book (handled automatically) */
+
+    /* Main video. Paste a YouTube / Vimeo link OR a direct .mp4 URL. Leave "" for a placeholder. */
+    VSL_EMBED: "https://assets.cdn.filesafe.space/YD07511ANI6LBQQguuTM/media/6a0cc738f18a99d9485247f7.mp4",
+    VSL_POSTER_TIME: 2.5,   /* which second of the mp4 to freeze as the thumbnail; bump this if the frame looks off */
+
+    /* ---- THE ADVISOR (per client) ---- */
+    ADVISOR_NAME: "John Doe",
+    ADVISOR_TITLE: "Licensed Life & Living Benefits Advisor",
+    ADVISOR_PROOF: "Licensed in Ontario  ·  8+ years experience  ·  Independent advisor",   /* short credibility line, separate items with "  ·  ". Leave "" to hide. */
+    ADVISOR_BIO: "Hi, I'm John. I'm a licensed Canadian advisor and I help self-employed people protect the income their family depends on. On our call I'll walk you through your options in plain language, no pressure and no jargon. My only job is to make sure you leave knowing exactly where you stand, and what it would take to cover it.",
+    ADVISOR_ABOUT_URL: "",   /* link to this advisor's About Me page. Leave "" to hide the "Read more" link. */
+
+    /* Full profile is ON by default (photo + name + bio). An advisor can set this to false to lead with credentials only. */
+    SHOW_ADVISOR_PHOTO: true,
+    ADVISOR_PHOTO: "https://assets.cdn.filesafe.space/YD07511ANI6LBQQguuTM/media/11fe1f62-d06b-4a31-8e95-f95825bf1ddf.png"
+  };
+</script>
+<!-- ===================================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#F4F8F5;--panel:#FFFFFF;--panel-2:#EDF4EF;--border:rgba(13,42,28,0.10);--border-strong:rgba(13,42,28,0.20);--accent:#12A150;--accent-2:#1FBF66;--accent-d:#0E8543;--accent-tint:rgba(18,161,80,0.10);--accent-glow:rgba(18,161,80,0.32);--text:#0C1F16;--text-2:#48594F;--text-3:#7C8A81;--radius:16px;--glow:0 20px 48px -22px var(--accent-glow)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden}
+  h1,h2,h3{font-family:'Poppins',sans-serif}
+  .bg-grid,.bg-glow{position:fixed;inset:0;pointer-events:none;z-index:0}
+  .bg-grid{background-image:linear-gradient(rgba(13,42,28,0.045) 1px,transparent 1px),linear-gradient(90deg,rgba(13,42,28,0.045) 1px,transparent 1px);background-size:54px 54px;-webkit-mask-image:radial-gradient(ellipse 95% 65% at 50% 0%,#000 25%,transparent 78%);mask-image:radial-gradient(ellipse 95% 65% at 50% 0%,#000 25%,transparent 78%)}
+  .bg-glow{background:radial-gradient(620px 420px at 18% 6%,rgba(18,161,80,0.14),transparent 68%),radial-gradient(620px 520px at 84% 96%,rgba(18,161,80,0.10),transparent 70%)}
+  .wrap{position:relative;z-index:1;max-width:940px;margin:0 auto;padding:0 22px 70px}
+  header{position:relative;z-index:1;width:100%;border-bottom:1px solid var(--border)}
+  .hdr-inner{max-width:1080px;margin:0 auto;padding:18px clamp(20px,4vw,40px);display:flex;align-items:center;justify-content:space-between}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Poppins';font-weight:800;font-size:18px;letter-spacing:-0.02em}
+  .logo img{height:33px;width:auto;display:block}.logo .fb{display:none;color:var(--text)}
+  .pill{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent-d);border:1px solid var(--border-strong);background:var(--accent-tint);padding:8px 15px;border-radius:999px}
+  .eyebrow{text-align:center;color:var(--accent);font-family:'Poppins';font-weight:700;font-size:13px;letter-spacing:0.22em;text-transform:uppercase;margin:52px 0 18px}
+  h1.hero{font-family:'Poppins';font-weight:800;text-align:center;font-size:clamp(32px,5.6vw,52px);line-height:1.06;letter-spacing:-0.03em;max-width:900px;margin:0 auto}
+  h1.hero .a{color:var(--accent)}
+  .lead{text-align:center;color:var(--text-2);font-size:clamp(15px,2.2vw,18px);line-height:1.7;max-width:600px;margin:22px auto 0}
+  .lead b{color:var(--text);font-weight:600}
+
+  /* VIDEO */
+  .vwrap{max-width:840px;margin:34px auto 0}
+  .vid{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border-strong);background:linear-gradient(135deg,#0b1f16,#12281c);box-shadow:0 30px 70px -34px rgba(13,42,28,0.55)}
+  .vid.r169{aspect-ratio:16/9}
+  .vid.play-ready{cursor:pointer}
+  .vid .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#0b1f16}
+  .vid .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,16,10,0.26),rgba(4,16,10,0.05) 45%,rgba(4,16,10,0.55))}
+  .vid iframe,.vid video{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .vid .glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,rgba(31,191,102,0.20),transparent 62%)}
+  .vid .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:70px;height:70px;border-radius:50%;background:var(--accent);border:none;display:flex;align-items:center;justify-content:center;box-shadow:0 18px 44px -12px var(--accent-glow);transition:transform .18s,background .18s}
+  .vid.play-ready:hover .play{transform:translate(-50%,-50%) scale(1.09);background:var(--accent-d)}
+  .vid .play svg{width:26px;height:26px;fill:#fff;margin-left:3px}
+  .vid .vtag{position:absolute;top:12px;left:12px;display:inline-flex;align-items:center;gap:6px;background:rgba(4,16,10,0.55);border:1px solid rgba(255,255,255,0.18);color:#fff;font-family:'Poppins';font-weight:700;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;padding:6px 11px;border-radius:999px;z-index:3}
+  .vid .vtag svg{width:10px;height:10px;fill:var(--accent-2)}
+
+  /* ADVISOR */
+  .advisor{margin-top:48px}
+  .adv-eyebrow{margin:0 0 18px}
+  .adv-card{border:1px solid var(--border-strong);background:linear-gradient(180deg,var(--panel-2),var(--panel));border-radius:20px;padding:34px 30px;text-align:center;box-shadow:0 16px 46px -30px rgba(13,42,28,0.2)}
+  .adv-card.has-photo{display:flex;gap:30px;align-items:center;text-align:left}
+  .adv-photo{width:188px;height:188px;flex:none;border-radius:16px;object-fit:cover;border:1px solid var(--border);background:var(--panel-2)}
+  .adv-name{font-family:'Poppins';font-weight:800;font-size:clamp(21px,3vw,25px);letter-spacing:-0.02em;line-height:1.15}
+  .adv-title{color:var(--accent-d);font-family:'Poppins';font-weight:700;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;margin-top:7px}
+  .adv-proof{color:var(--text-2);font-size:13.5px;margin-top:12px;line-height:1.5}
+  .adv-bio{color:var(--text-2);font-size:15px;line-height:1.65;margin:15px auto 0;max-width:600px}
+  .adv-card.has-photo .adv-bio{margin-left:0;margin-right:0}
+  .adv-link{display:none;align-items:center;gap:6px;margin-top:16px;color:var(--accent-d);font-family:'Poppins';font-weight:700;font-size:14.5px;text-decoration:none}
+  .adv-link:hover{text-decoration:underline}
+  .adv-link svg{width:15px;height:15px}
+
+  /* BOOKING */
+  .book{background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--border-strong);border-radius:24px;padding:clamp(26px,4vw,48px) clamp(16px,2.4vw,30px);margin-top:52px;box-shadow:0 20px 60px -34px rgba(13,42,28,0.18)}
+  .book h2{text-align:center;font-family:'Poppins';font-weight:800;font-size:clamp(24px,4vw,38px);line-height:1.1;letter-spacing:-0.02em;padding:0 8px}
+  .book h2 .a{color:var(--accent)}
+  .book .bsub{text-align:center;color:var(--text-2);font-size:15px;line-height:1.6;max-width:540px;margin:14px auto 0}
+  #booking-mount{margin-top:26px}
+  #booking-mount iframe{width:100%;min-height:300px;border:none;border-radius:var(--radius);background:#fff;display:block}
+  #booking-fallback{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:44px 24px;text-align:center;color:var(--text-2);font-family:'Inter'}
+  #booking-fallback a{color:var(--accent-d);font-weight:700}
+
+  /* WHAT HAPPENS */
+  section{padding:52px 0 0;border-top:1px solid var(--border);margin-top:58px}
+  .sec-title{text-align:center;font-family:'Poppins';font-weight:800;font-size:clamp(26px,4.4vw,40px);letter-spacing:-0.02em;line-height:1.1}
+  .sec-title .a{color:var(--accent)}
+  .sec-sub{text-align:center;color:var(--text-3);font-size:15px;margin:12px auto 0;max-width:560px;line-height:1.6}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:38px}
+  .step{border:1px solid var(--border);background:var(--panel);border-radius:var(--radius);padding:28px 24px;box-shadow:0 4px 14px -10px rgba(13,42,28,0.12)}
+  .step .snum{width:34px;height:34px;border-radius:10px;background:var(--accent-tint);color:var(--accent-d);display:flex;align-items:center;justify-content:center;font-family:'Poppins';font-weight:800;font-size:15px;margin-bottom:16px}
+  .step h3{font-family:'Poppins';font-weight:700;font-size:18px;margin-bottom:9px}
+  .step p{color:var(--text-2);font-size:14.5px;line-height:1.6}
+  .reassure{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:32px;color:var(--text-2);font-size:14px}
+  .reassure span{display:inline-flex;align-items:center;gap:8px}
+  .reassure svg{width:17px;height:17px;color:var(--accent);flex:none}
+
+  .book-note{display:flex;gap:8px;align-items:flex-start;justify-content:center;text-align:center;color:var(--text-3);font-size:13px;line-height:1.5;margin-top:18px}
+  .book-note svg{width:15px;height:15px;color:var(--accent);flex:none;margin-top:2px}
+
+  /* FAQ */
+  .faq{max-width:720px;margin:36px auto 0;display:flex;flex-direction:column;gap:12px}
+  .fq{border:1px solid var(--border);background:var(--panel);border-radius:14px;padding:20px 22px;box-shadow:0 3px 12px -9px rgba(13,42,28,0.14)}
+  .fq h4{font-family:'Poppins';font-weight:700;font-size:16px;margin-bottom:7px;display:flex;gap:10px;align-items:flex-start}
+  .fq h4 .qm{color:var(--accent);flex:none}
+  .fq p{color:var(--text-2);font-size:14.5px;line-height:1.6;padding-left:26px}
+
+  footer{text-align:center;color:var(--text-3);font-size:12.5px;padding:44px 0 0;border-top:1px solid var(--border);margin-top:58px}
+  footer a{color:var(--text-2);text-decoration:none}
+
+  @media (max-width:700px){
+    .steps{grid-template-columns:1fr}
+    .eyebrow{margin:40px 0 14px}
+    .vwrap{margin-top:24px}
+    .book{margin-top:34px}
+    section{padding:38px 0 0;margin-top:40px}
+    .advisor{margin-top:36px}
+    .adv-card.has-photo{flex-direction:column;text-align:center}
+    .adv-card.has-photo .adv-bio{margin-left:auto;margin-right:auto}
+    .adv-photo{width:130px;height:130px}
+  }
+</style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1532837473873011');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7KHYYF9BFV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7KHYYF9BFV');
+</script>
+<!-- End Google Analytics -->
+</head>
+<body>
+<div class="bg-grid"></div><div class="bg-glow"></div>
+
+<header><div class="hdr-inner">
+  <div class="logo"><img id="logo" alt="FinanceBridges" src=""><span class="fb">FinanceBridges</span></div>
+  <span class="pill">Final Step</span>
+</div></header>
+
+<div class="wrap">
+
+  <div class="eyebrow">&lt; Last step &gt;</div>
+  <h1 class="hero">You've Seen What's At Risk. Now Let's <span class="a">Cover It.</span></h1>
+  <p class="lead">Watch the short video below, then grab a time. On the call, a licensed Canadian advisor will show you <b>exactly</b> what it takes to protect your income, based on your answers.</p>
+
+  <div class="vwrap" id="vsl-mount"></div>
+
+  <div class="advisor">
+    <div class="eyebrow adv-eyebrow">&lt; Who you'll be talking to &gt;</div>
+    <div class="adv-card" id="adv-card">
+      <img class="adv-photo" id="adv-photo" alt="" style="display:none">
+      <div class="adv-body">
+        <div class="adv-name" id="adv-name"></div>
+        <div class="adv-title" id="adv-title"></div>
+        <div class="adv-proof" id="adv-proof"></div>
+        <p class="adv-bio" id="adv-bio"></p>
+        <a class="adv-link" id="adv-link" href="#" target="_blank" rel="noopener">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="book">
+    <h2>Grab 15 Minutes. <span class="a">Free, No Obligation.</span></h2>
+    <p class="bsub">Pick a time that works for you. It's a quick, no-pressure call to see what protecting your income actually looks like for your situation.</p>
+    <div id="booking-mount">
+      <div id="booking-fallback">Add your <b>BOOKING_URL</b> in the config to load the calendar here. &nbsp;<a href="#" id="fallback-link" target="_blank" rel="noopener">Open calendar</a></div>
+    </div>
+    <p class="book-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg>You'll get a confirmation email and a reminder before your call, so it's easy to keep.</p>
+  </div>
+
+  <section>
+    <div class="sec-title">What Happens <span class="a">On The Call</span></div>
+    <div class="sec-sub">No sales pressure. Just a clear look at where you stand and what your options are.</div>
+    <div class="steps">
+      <div class="step"><div class="snum">1</div><h3>We look at your real numbers</h3><p>You'll walk through exactly how much income you'd lose if you couldn't work, and what it would take to cover it, based on your actual situation.</p></div>
+      <div class="step"><div class="snum">2</div><h3>You see your options, plainly</h3><p>A licensed Canadian advisor shops the market and shows you real options and real prices. No jargon, no scary sales pitch.</p></div>
+      <div class="step"><div class="snum">3</div><h3>You decide, on your timeline</h3><p>There's zero obligation. If it makes sense, great. If not, you'll still walk away knowing exactly where you stand.</p></div>
+    </div>
+    <div class="reassure">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>About 15 minutes</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>100% free</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>No obligation</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title">Questions, <span class="a">Answered</span></div>
+    <div class="sec-sub">Everything people usually want to know before they book.</div>
+    <div class="faq">
+      <div class="fq"><h4><span class="qm">Q.</span>Is this really free?</h4><p>Yes. The call costs you nothing and there's no obligation. Booking a time doesn't sign you up for anything.</p></div>
+      <div class="fq"><h4><span class="qm">Q.</span>Will I be pressured to buy something?</h4><p>No. Your advisor's job is to show you your options and answer your questions in plain language. If it's a fit, great. If not, no hard feelings.</p></div>
+      <div class="fq"><h4><span class="qm">Q.</span>How long does the call take?</h4><p>About 15 minutes, on the phone. Quick and to the point, at a time you pick.</p></div>
+      <div class="fq"><h4><span class="qm">Q.</span>Do I need to prepare anything?</h4><p>Nothing at all. Just answer the phone. Your advisor already has what you shared and will take it from there.</p></div>
+      <div class="fq"><h4><span class="qm">Q.</span>What if I'm not sure I can afford it?</h4><p>That's exactly what the call is for. Coverage can start smaller than most people think, and you'll see real numbers before you decide anything.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <div>FinanceBridges &nbsp;&middot;&nbsp; <a href="mailto:hello@financebridges.ca">hello@financebridges.ca</a></div>
+    <div style="margin-top:10px">Income protection for self-employed Canadians &#127809;</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var C=window.FB_CONFIG||{};
+  var logo=document.getElementById('logo');
+  if(C.LOGO_URL){logo.src=C.LOGO_URL;} logo.onerror=function(){logo.style.display='none';document.querySelector('.logo .fb').style.display='inline-block';}; if(!C.LOGO_URL){logo.onerror();}
+
+  function toEmbed(url, autoplay){
+    if(!url) return "";
+    var yt=url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/|live\/))([\w-]{6,})/);
+    if(yt){ return "https://www.youtube.com/embed/"+yt[1]+"?rel=0&playsinline=1&modestbranding=1"+(autoplay?"&autoplay=1":""); }
+    var vm=url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+    if(vm){ return "https://player.vimeo.com/video/"+vm[1]+(autoplay?"?autoplay=1":""); }
+    return url;
+  }
+  function isFile(url){ return /\.(mp4|webm|mov|m4v)(\?|$)/i.test(url||""); }
+  function ytId(u){ var m=(u||"").match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/|live\/))([\w-]{6,})/); return m?m[1]:""; }
+
+  function buildVid(cls, src, poster, ptime){
+    var wrap=document.createElement('div');
+    wrap.className="vid "+cls+" js-vid"; wrap.setAttribute('data-src', src||"");
+    var yid=ytId(src), thumb=false;
+    if(poster){ var im=document.createElement('img'); im.className="poster"; im.loading="lazy"; im.alt=""; im.src=poster; wrap.appendChild(im); thumb=true; }
+    else if(yid){ var im2=document.createElement('img'); im2.className="poster"; im2.loading="lazy"; im2.alt=""; im2.src="https://img.youtube.com/vi/"+yid+"/maxresdefault.jpg"; im2.onerror=function(){ im2.onerror=null; im2.src="https://img.youtube.com/vi/"+yid+"/hqdefault.jpg"; }; wrap.appendChild(im2); thumb=true; }
+    else if(isFile(src)){ var pv=document.createElement('video'); pv.className="poster"; pv.src=src+"#t="+(ptime||1); pv.preload="metadata"; pv.muted=true; pv.setAttribute('muted',''); pv.setAttribute('playsinline',''); wrap.appendChild(pv); thumb=true; }
+    var ov=document.createElement('div'); ov.className=thumb?"scrim":"glow"; wrap.appendChild(ov);
+    var btn=document.createElement('button'); btn.className="play"; btn.setAttribute('aria-label','Play video');
+    btn.innerHTML='<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>'; wrap.appendChild(btn);
+    var tag=document.createElement('div'); tag.className="vtag"; tag.innerHTML='<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg><span class="vtxt">'+(src?"Watch First":"Coming Soon")+'</span>'; wrap.appendChild(tag);
+    if(src){ wrap.classList.add('play-ready'); }
+    return wrap;
+  }
+  function activate(wrap){
+    var src=wrap.getAttribute('data-src'); if(!src || wrap.getAttribute('data-live')==="1") return;
+    wrap.setAttribute('data-live',"1");
+    wrap.innerHTML = isFile(src)
+      ? '<video src="'+src+'" controls autoplay playsinline></video>'
+      : '<iframe src="'+toEmbed(src,true)+'" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe>';
+  }
+  document.addEventListener('click', function(e){ var w=e.target.closest?e.target.closest('.js-vid'):null; if(w){ activate(w); } });
+
+  /* main VSL */
+  (function(){ var m=document.getElementById('vsl-mount'); if(!m) return; var v=buildVid('r169', C.VSL_EMBED||"", C.VSL_POSTER||"", C.VSL_POSTER_TIME||4); m.appendChild(v); })();
+
+  /* advisor intro */
+  (function(){
+    function put(id,val){ var el=document.getElementById(id); if(!el) return; if(val){ el.textContent=val; } else { el.style.display='none'; } }
+    put('adv-name', C.ADVISOR_NAME);
+    put('adv-title', C.ADVISOR_TITLE);
+    put('adv-proof', C.ADVISOR_PROOF);
+    put('adv-bio', C.ADVISOR_BIO);
+    if(C.SHOW_ADVISOR_PHOTO && C.ADVISOR_PHOTO){
+      var ph=document.getElementById('adv-photo');
+      ph.onerror=function(){ ph.style.display='none'; document.getElementById('adv-card').classList.remove('has-photo'); };
+      ph.src=C.ADVISOR_PHOTO; ph.style.display=''; document.getElementById('adv-card').classList.add('has-photo');
+    }
+    if(C.ADVISOR_ABOUT_URL){
+      var lk=document.getElementById('adv-link'); lk.href=C.ADVISOR_ABOUT_URL; lk.style.display='inline-flex';
+      var fn=((C.ADVISOR_NAME||'').trim().split(/\s+/)[0]||'');
+      if(fn && ['a','your','the'].indexOf(fn.toLowerCase())===-1){ lk.childNodes[0].nodeValue='Read more about '+fn+' '; }
+    }
+  })();
+
+  /* calendar embed (UTM + prefill passthrough from URL) */
+  function buildBookingSrc(){
+    var base=C.BOOKING_URL||""; if(!base) return "";
+    var cur=new URLSearchParams(window.location.search), qp=new URLSearchParams();
+    cur.forEach(function(val,key){ qp.set(key,val); });
+    var q=qp.toString();
+    return q ? base+(base.indexOf('?')>-1?'&':'?')+q : base;
+  }
+  var mount=document.getElementById('booking-mount');
+  if(C.BOOKING_URL){
+    var id=(C.BOOKING_URL.split('/').pop()||'cal').replace(/[^\w-]/g,'');
+    mount.innerHTML='<iframe src="'+buildBookingSrc()+'" scrolling="no" id="'+id+'_book" title="Book your call"></iframe>';
+  } else {
+    var fl=document.getElementById('fallback-link'); if(fl) fl.href=C.BOOKING_URL||"#";
+  }
+
+  /* ---------- Auto-size the calendar + redirect to thank-you on booking ----------
+     GHL's calendar iframe posts an ARRAY to the parent: ["highlevel.setHeight",{height}]
+     to size it, and ["msgsndr-booking-complete"] when a booking finishes. */
+  var redirected=false;
+  function goThankYou(){
+    if(redirected) return; redirected=true;
+    var u=C.THANKYOU_URL||"thank-you.html";
+    try{ window.top.location.href=u; }catch(e){ window.location.href=u; }
+  }
+  window.addEventListener('message', function(ev){
+    var d=ev.data, booked=false;
+    if(Object.prototype.toString.call(d)==='[object Array]'){ if(d[0]==='highlevel.setHeight'&&d[1]&&d[1].height){var _if=document.querySelector('#booking-mount iframe');if(_if)_if.style.height=(d[1].height+40)+'px';} booked = (d[0]==='msgsndr-booking-complete'); }
+    else if(typeof d==='string'){ booked = d.indexOf('msgsndr-booking-complete')>-1; if(!booked){ try{ d=JSON.parse(d); }catch(_){} } }
+    if(!booked && d && typeof d==='object' && Object.prototype.toString.call(d)!=='[object Array]'){
+      var t=((d.type||d.event||d.action||"")+"").toLowerCase();
+      booked = t.indexOf('booking-complete')>-1 || (t.indexOf('appointment')>-1 && (t.indexOf('book')>-1||t.indexOf('confirm')>-1||t.indexOf('sched')>-1));
+    }
+    if(booked){ goThankYou(); }
+  }, false);
+})();
+</script>
+</body>
+</html>

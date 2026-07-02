@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Call Is Booked | FinanceBridges</title>
+<meta name="description" content="Your call is confirmed. Reply to our text and watch this quick video so you get the most out of it.">
+<meta name="theme-color" content="#F4F8F5">
+<link rel="icon" type="image/svg+xml" href="https://storage.googleapis.com/msgsndr/YD07511ANI6LBQQguuTM/media/6764d80563c0fec34cd9d5b3.svg">
+<link rel="apple-touch-icon" href="https://storage.googleapis.com/msgsndr/YD07511ANI6LBQQguuTM/media/6764d80563c0fec34cd9d5b3.svg">
+
+<!-- ================= CONFIG: EDIT THESE ================= -->
+<script>
+  window.FB_CONFIG = {
+    LOGO_URL: "Logo%20svg.svg",
+
+    /* Confirmation video ("your call is now locked in"). YouTube / Vimeo / .mp4 link. Leave "" to hide the video. */
+    CONFIRM_EMBED: "https://assets.cdn.filesafe.space/YD07511ANI6LBQQguuTM/media/6a0cc7407f7248631525d22c.mp4",
+    CONFIRM_POSTER_TIME: 2.5,   /* which second of the mp4 to freeze as the thumbnail */
+
+    /* ---- THE ADVISOR (per client - keep identical to the booking page) ---- */
+    ADVISOR_NAME: "John Doe",
+    ADVISOR_TITLE: "Licensed Life & Living Benefits Advisor",
+    ADVISOR_PROOF: "Licensed in Ontario  ·  8+ years experience  ·  Independent advisor",   /* short credibility line, separate items with "  ·  ". Leave "" to hide. */
+    ADVISOR_BIO: "We're all set. On our call I'll walk you through your options in plain language, no pressure and no jargon. My only job is to make sure you leave knowing exactly where you stand, and what it would take to cover it. Talk soon.",
+    ADVISOR_ABOUT_URL: "",   /* link to this advisor's About Me page. Leave "" to hide the "Read more" link. */
+    SHOW_ADVISOR_PHOTO: true,
+    ADVISOR_PHOTO: "https://assets.cdn.filesafe.space/YD07511ANI6LBQQguuTM/media/11fe1f62-d06b-4a31-8e95-f95825bf1ddf.png"
+  };
+</script>
+<!-- ===================================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#F4F8F5;--panel:#FFFFFF;--panel-2:#EDF4EF;--border:rgba(13,42,28,0.10);--border-strong:rgba(13,42,28,0.20);--accent:#12A150;--accent-2:#1FBF66;--accent-d:#0E8543;--accent-tint:rgba(18,161,80,0.10);--accent-glow:rgba(18,161,80,0.32);--text:#0C1F16;--text-2:#48594F;--text-3:#7C8A81;--radius:16px;--glow:0 20px 48px -22px var(--accent-glow)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden}
+  h1,h2,h3{font-family:'Poppins',sans-serif}
+  .bg-grid,.bg-glow{position:fixed;inset:0;pointer-events:none;z-index:0}
+  .bg-grid{background-image:linear-gradient(rgba(13,42,28,0.045) 1px,transparent 1px),linear-gradient(90deg,rgba(13,42,28,0.045) 1px,transparent 1px);background-size:54px 54px;-webkit-mask-image:radial-gradient(ellipse 95% 65% at 50% 0%,#000 25%,transparent 78%);mask-image:radial-gradient(ellipse 95% 65% at 50% 0%,#000 25%,transparent 78%)}
+  .bg-glow{background:radial-gradient(620px 420px at 18% 6%,rgba(18,161,80,0.14),transparent 68%),radial-gradient(620px 520px at 84% 96%,rgba(18,161,80,0.10),transparent 70%)}
+  .wrap{position:relative;z-index:1;max-width:940px;margin:0 auto;padding:0 22px 70px}
+  header{position:relative;z-index:1;width:100%;border-bottom:1px solid var(--border)}
+  .hdr-inner{max-width:1080px;margin:0 auto;padding:18px clamp(20px,4vw,40px);display:flex;align-items:center;justify-content:space-between}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Poppins';font-weight:800;font-size:18px;letter-spacing:-0.02em}
+  .logo img{height:33px;width:auto;display:block}.logo .fb{display:none;color:var(--text)}
+  .pill{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent-d);border:1px solid var(--border-strong);background:var(--accent-tint);padding:8px 15px;border-radius:999px}
+
+  .confirm-badge{display:flex;justify-content:center;margin:52px 0 4px}
+  .confirm-badge .ring{width:66px;height:66px;border-radius:50%;background:var(--accent-tint);border:1px solid var(--border-strong);display:flex;align-items:center;justify-content:center;animation:pop .5s cubic-bezier(.2,.8,.2,1) both}
+  .confirm-badge svg{width:32px;height:32px;stroke:var(--accent);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+  @keyframes pop{0%{opacity:0;transform:scale(.7)}60%{transform:scale(1.06)}100%{opacity:1;transform:scale(1)}}
+  .eyebrow{text-align:center;color:var(--accent);font-family:'Poppins';font-weight:700;font-size:13px;letter-spacing:0.22em;text-transform:uppercase;margin:14px 0 16px}
+  h1.hero{font-family:'Poppins';font-weight:800;text-align:center;font-size:clamp(32px,5.6vw,52px);line-height:1.06;letter-spacing:-0.03em;max-width:860px;margin:0 auto}
+  h1.hero .a{color:var(--accent)}
+  .lead{text-align:center;color:var(--text-2);font-size:clamp(15px,2.2vw,18px);line-height:1.7;max-width:620px;margin:22px auto 0}
+  .lead b{color:var(--text);font-weight:600}
+
+  /* REPLY-YES CALLOUT */
+  .confirm-cta{display:flex;gap:18px;align-items:center;max-width:660px;margin:34px auto 0;background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--border-strong);border-radius:18px;padding:24px 28px;box-shadow:0 18px 50px -30px rgba(13,42,28,0.24)}
+  .confirm-cta .ico{width:50px;height:50px;flex:none;border-radius:13px;background:var(--accent-tint);color:var(--accent-d);display:flex;align-items:center;justify-content:center}
+  .confirm-cta .ico svg{width:25px;height:25px}
+  .confirm-cta h3{font-family:'Poppins';font-weight:800;font-size:clamp(17px,2.4vw,20px);letter-spacing:-0.01em;margin-bottom:5px}
+  .confirm-cta h3 .y{color:var(--accent-d)}
+  .confirm-cta p{color:var(--text-2);font-size:14.5px;line-height:1.55}
+
+  /* VIDEO */
+  .vwrap{max-width:840px;margin:44px auto 0}
+  .vid{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border-strong);background:linear-gradient(135deg,#0b1f16,#12281c);box-shadow:0 30px 70px -34px rgba(13,42,28,0.55)}
+  .vid.r169{aspect-ratio:16/9}
+  .vid.play-ready{cursor:pointer}
+  .vid .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#0b1f16}
+  .vid .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,16,10,0.26),rgba(4,16,10,0.05) 45%,rgba(4,16,10,0.55))}
+  .vid iframe,.vid video{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .vid .glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,rgba(31,191,102,0.20),transparent 62%)}
+  .vid .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:70px;height:70px;border-radius:50%;background:var(--accent);border:none;display:flex;align-items:center;justify-content:center;box-shadow:0 18px 44px -12px var(--accent-glow);transition:transform .18s,background .18s}
+  .vid.play-ready:hover .play{transform:translate(-50%,-50%) scale(1.09);background:var(--accent-d)}
+  .vid .play svg{width:26px;height:26px;fill:#fff;margin-left:3px}
+  .vid .vtag{position:absolute;top:12px;left:12px;display:inline-flex;align-items:center;gap:6px;background:rgba(4,16,10,0.55);border:1px solid rgba(255,255,255,0.18);color:#fff;font-family:'Poppins';font-weight:700;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;padding:6px 11px;border-radius:999px;z-index:3}
+  .vid .vtag svg{width:10px;height:10px;fill:var(--accent-2)}
+
+  /* ADVISOR */
+  .advisor{margin-top:52px}
+  .adv-eyebrow{margin:0 0 18px}
+  .adv-card{border:1px solid var(--border-strong);background:linear-gradient(180deg,var(--panel-2),var(--panel));border-radius:20px;padding:34px 30px;text-align:center;box-shadow:0 16px 46px -30px rgba(13,42,28,0.2)}
+  .adv-card.has-photo{display:flex;gap:30px;align-items:center;text-align:left}
+  .adv-photo{width:188px;height:188px;flex:none;border-radius:16px;object-fit:cover;border:1px solid var(--border);background:var(--panel-2)}
+  .adv-name{font-family:'Poppins';font-weight:800;font-size:clamp(21px,3vw,25px);letter-spacing:-0.02em;line-height:1.15}
+  .adv-title{color:var(--accent-d);font-family:'Poppins';font-weight:700;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;margin-top:7px}
+  .adv-proof{color:var(--text-2);font-size:13.5px;margin-top:12px;line-height:1.5}
+  .adv-bio{color:var(--text-2);font-size:15px;line-height:1.65;margin:15px auto 0;max-width:600px}
+  .adv-card.has-photo .adv-bio{margin-left:0;margin-right:0}
+  .adv-link{display:none;align-items:center;gap:6px;margin-top:16px;color:var(--accent-d);font-family:'Poppins';font-weight:700;font-size:14.5px;text-decoration:none}
+  .adv-link:hover{text-decoration:underline}
+  .adv-link svg{width:15px;height:15px}
+
+  /* NEXT STEPS */
+  section{padding:52px 0 0;border-top:1px solid var(--border);margin-top:58px}
+  .sec-title{text-align:center;font-family:'Poppins';font-weight:800;font-size:clamp(26px,4.4vw,40px);letter-spacing:-0.02em;line-height:1.1}
+  .sec-title .a{color:var(--accent)}
+  .sec-sub{text-align:center;color:var(--text-3);font-size:15px;margin:12px auto 0;max-width:560px;line-height:1.6}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:38px}
+  .step{border:1px solid var(--border);background:var(--panel);border-radius:var(--radius);padding:28px 24px;box-shadow:0 4px 14px -10px rgba(13,42,28,0.12)}
+  .step .snum{width:34px;height:34px;border-radius:10px;background:var(--accent-tint);color:var(--accent-d);display:flex;align-items:center;justify-content:center;font-family:'Poppins';font-weight:800;font-size:15px;margin-bottom:16px}
+  .step h3{font-family:'Poppins';font-weight:700;font-size:18px;margin-bottom:9px}
+  .step p{color:var(--text-2);font-size:14.5px;line-height:1.6}
+  .reassure{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:32px;color:var(--text-2);font-size:14px}
+  .reassure span{display:inline-flex;align-items:center;gap:8px}
+  .reassure svg{width:17px;height:17px;color:var(--accent);flex:none}
+
+  footer{text-align:center;color:var(--text-3);font-size:12.5px;padding:44px 0 0;border-top:1px solid var(--border);margin-top:58px}
+  footer a{color:var(--text-2);text-decoration:none}
+
+  @media (max-width:700px){
+    .steps{grid-template-columns:1fr}
+    .confirm-badge{margin-top:42px}
+    .confirm-cta{flex-direction:column;text-align:center;gap:14px}
+    .vwrap{margin-top:32px}
+    section{padding:38px 0 0;margin-top:40px}
+    .advisor{margin-top:40px}
+    .adv-card.has-photo{flex-direction:column;text-align:center}
+    .adv-card.has-photo .adv-bio{margin-left:auto;margin-right:auto}
+    .adv-photo{width:130px;height:130px}
+  }
+</style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1532837473873011');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7KHYYF9BFV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7KHYYF9BFV');
+  gtag('event', 'booking_scheduled');
+</script>
+<!-- End Google Analytics -->
+</head>
+<body>
+<div class="bg-grid"></div><div class="bg-glow"></div>
+
+<header><div class="hdr-inner">
+  <div class="logo"><img id="logo" alt="FinanceBridges" src=""><span class="fb">FinanceBridges</span></div>
+  <span class="pill">You're Booked</span>
+</div></header>
+
+<div class="wrap">
+
+  <div class="confirm-badge"><div class="ring"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div></div>
+  <div class="eyebrow">&lt; You're confirmed &gt;</div>
+  <h1 class="hero">Your Call Is <span class="a">Locked In.</span></h1>
+  <p class="lead">One quick thing first: <b>we just texted you, reply YES to confirm.</b> Then watch the short video below so you know exactly what to expect.</p>
+
+  <div class="confirm-cta">
+    <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/></svg></div>
+    <div>
+      <h3>Check your phone: reply <span class="y">YES</span></h3>
+      <p id="cta-copy">We just sent you a text. Reply <b>YES</b> so your advisor knows you're coming and sets time aside to prepare for your call.</p>
+    </div>
+  </div>
+
+  <div class="vwrap" id="confirm-mount"></div>
+
+  <div class="advisor">
+    <div class="eyebrow adv-eyebrow">&lt; Who you'll be talking to &gt;</div>
+    <div class="adv-card" id="adv-card">
+      <img class="adv-photo" id="adv-photo" alt="" style="display:none">
+      <div class="adv-body">
+        <div class="adv-name" id="adv-name"></div>
+        <div class="adv-title" id="adv-title"></div>
+        <div class="adv-proof" id="adv-proof"></div>
+        <p class="adv-bio" id="adv-bio"></p>
+        <a class="adv-link" id="adv-link" href="#" target="_blank" rel="noopener">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-title">How To Get The Most <span class="a">From Your Call</span></div>
+    <div class="sec-sub">Three quick things so the call is worth your time.</div>
+    <div class="steps">
+      <div class="step"><div class="snum">1</div><h3>Reply to the text</h3><p>Reply YES to the text we just sent, and add the call to your calendar from your confirmation. A reminder goes out before we talk.</p></div>
+      <div class="step"><div class="snum">2</div><h3>Be somewhere you can talk</h3><p>It's a quick call, about 15 minutes, on the phone. Pick a quiet spot where you can speak freely for a few minutes.</p></div>
+      <div class="step"><div class="snum">3</div><h3>Think about your what-ifs</h3><p>No prep needed. Just have a rough idea of what would happen to your bills and family if you couldn't work for a while.</p></div>
+    </div>
+    <div class="reassure">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>About 15 minutes</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>100% free</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>No obligation</span>
+    </div>
+  </section>
+
+  <footer>
+    <div>FinanceBridges &nbsp;&middot;&nbsp; <a href="mailto:hello@financebridges.ca">hello@financebridges.ca</a></div>
+    <div style="margin-top:10px">Income protection for self-employed Canadians &#127809;</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var C=window.FB_CONFIG||{};
+  var logo=document.getElementById('logo');
+  if(C.LOGO_URL){logo.src=C.LOGO_URL;} logo.onerror=function(){logo.style.display='none';document.querySelector('.logo .fb').style.display='inline-block';}; if(!C.LOGO_URL){logo.onerror();}
+
+  var FN=((C.ADVISOR_NAME||'').trim().split(/\s+/)[0]||'');
+  var hasFN = FN && ['a','your','the'].indexOf(FN.toLowerCase())===-1;
+
+  /* personalize the reply-YES copy with the advisor's first name, if set */
+  (function(){
+    if(!hasFN) return;
+    var el=document.getElementById('cta-copy');
+    if(el){ el.innerHTML="We just sent you a text. Reply <b>YES</b> so "+FN+" knows you're coming and sets time aside to prepare for your call."; }
+  })();
+
+  function toEmbed(url, autoplay){
+    if(!url) return "";
+    var yt=url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/|live\/))([\w-]{6,})/);
+    if(yt){ return "https://www.youtube.com/embed/"+yt[1]+"?rel=0&playsinline=1&modestbranding=1"+(autoplay?"&autoplay=1":""); }
+    var vm=url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+    if(vm){ return "https://player.vimeo.com/video/"+vm[1]+(autoplay?"?autoplay=1":""); }
+    return url;
+  }
+  function isFile(url){ return /\.(mp4|webm|mov|m4v)(\?|$)/i.test(url||""); }
+  function ytId(u){ var m=(u||"").match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/|live\/))([\w-]{6,})/); return m?m[1]:""; }
+
+  function buildVid(cls, src, poster, ptime){
+    var wrap=document.createElement('div');
+    wrap.className="vid "+cls+" js-vid"; wrap.setAttribute('data-src', src||"");
+    var yid=ytId(src), thumb=false;
+    if(poster){ var im=document.createElement('img'); im.className="poster"; im.loading="lazy"; im.alt=""; im.src=poster; wrap.appendChild(im); thumb=true; }
+    else if(yid){ var im2=document.createElement('img'); im2.className="poster"; im2.loading="lazy"; im2.alt=""; im2.src="https://img.youtube.com/vi/"+yid+"/maxresdefault.jpg"; im2.onerror=function(){ im2.onerror=null; im2.src="https://img.youtube.com/vi/"+yid+"/hqdefault.jpg"; }; wrap.appendChild(im2); thumb=true; }
+    else if(isFile(src)){ var pv=document.createElement('video'); pv.className="poster"; pv.src=src+"#t="+(ptime||1); pv.preload="metadata"; pv.muted=true; pv.setAttribute('muted',''); pv.setAttribute('playsinline',''); wrap.appendChild(pv); thumb=true; }
+    var ov=document.createElement('div'); ov.className=thumb?"scrim":"glow"; wrap.appendChild(ov);
+    var btn=document.createElement('button'); btn.className="play"; btn.setAttribute('aria-label','Play video');
+    btn.innerHTML='<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>'; wrap.appendChild(btn);
+    var tag=document.createElement('div'); tag.className="vtag"; tag.innerHTML='<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg><span class="vtxt">'+(src?"Watch First":"Coming Soon")+'</span>'; wrap.appendChild(tag);
+    if(src){ wrap.classList.add('play-ready'); }
+    return wrap;
+  }
+  function activate(wrap){
+    var src=wrap.getAttribute('data-src'); if(!src || wrap.getAttribute('data-live')==="1") return;
+    wrap.setAttribute('data-live',"1");
+    wrap.innerHTML = isFile(src)
+      ? '<video src="'+src+'" controls autoplay playsinline></video>'
+      : '<iframe src="'+toEmbed(src,true)+'" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe>';
+  }
+  document.addEventListener('click', function(e){ var w=e.target.closest?e.target.closest('.js-vid'):null; if(w){ activate(w); } });
+
+  /* confirmation video (hidden entirely if no CONFIRM_EMBED set) */
+  (function(){
+    var m=document.getElementById('confirm-mount'); if(!m) return;
+    if(!C.CONFIRM_EMBED){ m.style.display='none'; return; }
+    m.appendChild(buildVid('r169', C.CONFIRM_EMBED, C.CONFIRM_POSTER||"", C.CONFIRM_POSTER_TIME||4));
+  })();
+
+  /* advisor intro (same card as the booking page) */
+  (function(){
+    function put(id,val){ var el=document.getElementById(id); if(!el) return; if(val){ el.textContent=val; } else { el.style.display='none'; } }
+    put('adv-name', C.ADVISOR_NAME);
+    put('adv-title', C.ADVISOR_TITLE);
+    put('adv-proof', C.ADVISOR_PROOF);
+    put('adv-bio', C.ADVISOR_BIO);
+    if(C.SHOW_ADVISOR_PHOTO && C.ADVISOR_PHOTO){
+      var ph=document.getElementById('adv-photo');
+      ph.onerror=function(){ ph.style.display='none'; document.getElementById('adv-card').classList.remove('has-photo'); };
+      ph.src=C.ADVISOR_PHOTO; ph.style.display=''; document.getElementById('adv-card').classList.add('has-photo');
+    }
+    if(C.ADVISOR_ABOUT_URL){
+      var lk=document.getElementById('adv-link'); lk.href=C.ADVISOR_ABOUT_URL; lk.style.display='inline-flex';
+      if(hasFN){ lk.childNodes[0].nodeValue='Read more about '+FN+' '; }
+    }
+  })();
+})();
+</script>
+</body>
+</html>
