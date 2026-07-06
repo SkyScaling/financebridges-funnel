@@ -119,7 +119,6 @@
   .progress span{flex:1;height:5px;border-radius:99px;background:rgba(148,160,196,0.16);overflow:hidden}
   .progress span i{display:block;height:100%;width:0;background:var(--grad);border-radius:99px;transition:width .5s cubic-bezier(.4,0,.2,1)}
   .progress span.done i{width:100%}
-  .q-momentum{font-family:'Poppins';font-weight:700;font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;min-height:14px;transition:opacity .3s}
   .q-title{font-family:'Poppins';font-weight:800;font-size:clamp(27px,5.2vw,42px);line-height:1.08;letter-spacing:-0.02em;color:var(--text)}
   .q-sub{color:var(--text-3);font-size:14px;margin-top:10px}
 
@@ -272,7 +271,6 @@ src="https://www.facebook.com/tr?id=1100120314636630&ev=PageView&noscript=1"
       <div id="q-stage">
         <div class="q-count" id="q-count"></div>
         <div class="progress" id="q-progress"></div>
-        <div class="q-momentum" id="q-momentum"></div>
         <h2 class="q-title" id="q-title"></h2>
         <p class="q-sub" id="q-sub"></p>
         <div class="opts" id="q-opts"></div>
@@ -461,8 +459,6 @@ src="https://www.facebook.com/tr?id=1100120314636630&ev=PageView&noscript=1"
   function renderQuestion(){
     var Q = QUESTIONS[state.i];
     document.getElementById('q-count').textContent = 'Question '+(state.i+1)+' / '+QUESTIONS.length;
-    var mom=document.getElementById('q-momentum');
-    if(mom){ var MOM=['','Nice, keep going','You\'re rolling','Halfway there','Almost done','Last one'][state.i]||''; mom.textContent=MOM; mom.style.display=MOM?'block':'none'; }
     var prog=document.getElementById('q-progress'); prog.innerHTML='';
     for(var j=0;j<QUESTIONS.length;j++){
       var seg=document.createElement('span'); if(j<=state.i) seg.className='done';
@@ -521,12 +517,14 @@ src="https://www.facebook.com/tr?id=1100120314636630&ev=PageView&noscript=1"
     var a=state.answers;
     /* Hero = a full year of their own income, exposed if they couldn't work.
        Runway = how long their savings would hold, used to twist the knife. */
-    var monthlyMap={u4k:3000,m4_7:5500,m7_10:8500,m10_20:15000,m20plus:25000};
-    var monthly=monthlyMap[a.income]||5500;
+    var lowMap={u4k:3000,m4_7:4000,m7_10:7000,m10_20:10000,m20plus:20000};
+    var monthly=lowMap[a.income]||4000;
     var annual=monthly*12;
+    var MONTHS=24;
+    var replace=monthly*MONTHS;
     var runwayMap={lt1m:'less than a month',m1_3:'roughly 1 to 3 months',m3_6r:'roughly 3 to 6 months',m6plus:'6 months or more'};
     var runway=runwayMap[a.runway]||'only a few weeks';
-    state.result={monthly:monthly,annual:annual,runway:runway};
+    state.result={monthly:monthly,annual:annual,replace:replace,months:MONTHS,runway:runway};
     return state.result;
   }
 
@@ -597,22 +595,22 @@ src="https://www.facebook.com/tr?id=1100120314636630&ev=PageView&noscript=1"
       document.getElementById('r-cta-ico').innerHTML='';
       top.innerHTML=
         '<div class="r-eyebrow">&lt; The real number &gt;</div>'+
-        '<div class="r-script">If you couldn’t work, you’d have about</div>'+
+        '<div class="r-script">If you couldn’t work, you’d need to replace about</div>'+
         '<div class="num-box">'+
-          '<div class="num-big" id="r-annual">$0</div>'+
-          '<div class="num-cap">Of income on the line this year</div>'+
+          '<div class="num-big"><span id="r-replace">$0</span>+</div>'+
+          '<div class="num-cap">Just to keep your household running</div>'+
           '<div class="num-div"></div>'+
-          '<div class="num-annual">'+money(state.result.monthly)+' a month, gone</div>'+
-          '<div class="num-annual-cap">The day you can’t work</div>'+
+          '<div class="num-annual">'+money(state.result.monthly)+'+ a month</div>'+
+          '<div class="num-annual-cap">For as long as you’re out</div>'+
         '</div>'+
-        '<p class="r-basis" style="text-align:center;color:var(--text-3);font-size:12.5px;line-height:1.55;max-width:470px;margin:16px auto 0">That’s a full year of your own income if you got sick or hurt and couldn’t work. Your savings would cover '+state.result.runway+'. After that, the mortgage, rent, and groceries don’t stop.</p>';
+        '<p class="r-basis" style="text-align:center;color:var(--text-3);font-size:12.5px;line-height:1.55;max-width:470px;margin:16px auto 0">That’s about '+money(state.result.monthly)+' a month for the two years a serious disability commonly keeps someone out, and it often runs longer. Your savings would cover '+state.result.runway+'. After that, the mortgage, rent, and groceries don’t stop.</p>';
       var ds=diagnosis(),html='<div class="diag"><h3>What’s leaving you exposed</h3><ul>';
       ds.forEach(function(t){ html+='<li><span class="dot">'+icon('zap')+'</span><span>'+t+'</span></li>'; });
       diagWrap.innerHTML=html+'</ul></div>';
       document.getElementById('r-form-title').textContent='See How Little It Costs To Cover This.';
       document.getElementById('r-form-sub').textContent='Enter your details and see real income protection options and what they\'d actually cost you. A licensed advisor walks you through it, no pressure, no obligation, no jargon.';
       document.getElementById('f-submit').innerHTML='See my options <span class="arrow">&rarr;</span>';
-      countUp(document.getElementById('r-annual'), state.result.annual);
+      countUp(document.getElementById('r-replace'), state.result.replace);
     } else {
       var m=DQ_MSG[state.dqReason]||DQ_MSG.other;
       top.innerHTML='<div class="r-eyebrow" style="margin-bottom:20px">&lt; Straight talk &gt;</div>';
