@@ -91,6 +91,20 @@
   .hero-sub b{color:var(--text);font-weight:700}
   #s-intro{padding-top:0}
 
+  /* divider between sub and embedded question */
+  .quiz-divider{display:flex;align-items:center;gap:14px;max-width:560px;margin:30px auto 0}
+  .quiz-divider::before,.quiz-divider::after{content:"";flex:1;height:1px;background:var(--border-strong)}
+  .quiz-divider span{font-family:'Poppins';font-weight:700;font-size:11.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-3);white-space:nowrap}
+  .intro-qlabel{text-align:center;font-family:'Poppins';font-weight:700;font-size:clamp(18px,3.4vw,22px);line-height:1.25;letter-spacing:-0.01em;color:var(--text);max-width:540px;margin:22px auto 0}
+  #intro-q-opts{display:flex;flex-direction:column;gap:12px;max-width:560px;margin:18px auto 0}
+
+  /* credibility box on the gate */
+  .trustbox{display:flex;align-items:center;gap:14px;border:1px solid var(--border);background:var(--panel);border-radius:var(--radius);padding:15px 18px;text-align:left;margin:20px 0 0;box-shadow:0 4px 14px -8px rgba(13,42,28,0.10)}
+  .trustbox .tb-ico{flex:none;width:44px;height:44px;border-radius:12px;background:var(--accent-tint);color:var(--accent);display:flex;align-items:center;justify-content:center}
+  .trustbox .tb-ico svg{width:22px;height:22px}
+  .trustbox .tb-head{font-family:'Poppins';font-weight:700;font-size:14.5px;line-height:1.25;color:var(--text)}
+  .trustbox .tb-sub{color:var(--text-2);font-size:12.5px;line-height:1.45;margin-top:4px}
+
   .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:34px 0 6px}
   .stat{padding:22px 10px;text-align:center;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 4px 14px -8px rgba(13,42,28,0.10)}
   .stat:last-child{border-right:none}
@@ -174,7 +188,7 @@
   .diag li .dot{flex:none;width:26px;height:26px;border-radius:8px;background:var(--accent-tint);color:var(--accent);display:flex;align-items:center;justify-content:center}
   .diag li .dot svg{width:15px;height:15px}
 
-  .cta-card{border:1px solid var(--border-strong);border-radius:20px;background:linear-gradient(180deg,var(--panel-2),var(--panel));padding:28px 22px}
+  .cta-card{border:1px solid var(--border-strong);border-radius:20px;background:linear-gradient(180deg,var(--panel-2),var(--panel));padding:28px 22px;margin-top:30px}
   .cta-card h2{font-family:'Poppins';font-weight:800;font-size:clamp(21px,4.4vw,27px);letter-spacing:-0.02em;text-align:center;line-height:1.2}
   .cta-card .csub{color:var(--text-2);font-size:14.5px;text-align:center;margin:12px auto 22px;max-width:420px;line-height:1.6}
   #r-cta-ico{display:flex;justify-content:center}
@@ -207,7 +221,8 @@
   @media (max-width:520px){
     .hdr-inner{padding-top:21px;padding-bottom:21px}
     .logo img{height:27px}
-    main{padding:16px 16px 72px}
+    main{padding:16px 22px 72px}
+    .cta-card{margin-top:26px}
     .stat{padding:18px 6px}.stat .num{font-size:23px}
     .opt{padding:14px 14px;gap:13px}.opt .oico{width:44px;height:44px}
     .num-box{padding:28px 16px}
@@ -260,9 +275,11 @@ src="https://www.facebook.com/tr?id=1100120314636630&ev=PageView&noscript=1"
     <section class="screen active" id="s-intro">
       <span class="script">If you couldn't work tomorrow,</span>
       <h1 class="hero-title"><span class="top">Who Pays</span><span class="hl">The Bills?</span></h1>
-      <p class="hero-sub">You're self-employed, so if you get sick or hurt and can't work, your income stops. But your <b>mortgage, rent, and groceries</b> don't. See what's on the line, and how to cover it.</p>
+      <p class="hero-sub">You're self-employed, so if you get sick or hurt and can't work, your income stops. But your <b>mortgage, rent, and groceries</b> don't. Answer 6 quick questions to see exactly what's at risk.</p>
+      <div class="quiz-divider"><span>See what's at risk</span></div>
+      <div class="intro-qlabel" id="intro-qlabel"></div>
+      <div id="intro-q-opts"></div>
       <div class="stats" id="intro-stats"></div>
-      <button class="btn big" onclick="Funnel.start()">Show me what's at risk <span class="arrow">&rarr;</span></button>
       <p class="trust">Matched with a licensed Canadian advisor. Free, no obligation, about a minute.</p>
     </section>
 
@@ -301,15 +318,15 @@ src="https://www.facebook.com/tr?id=1100120314636630&ev=PageView&noscript=1"
         <h2 id="r-form-title">See How Little It Costs To Cover This.</h2>
         <p class="csub" id="r-form-sub">Enter your details and see real income protection options and what they'd actually cost you. A licensed advisor walks you through it, no pressure, no obligation, no jargon.</p>
         <form id="lead-form" novalidate>
-          <div class="frow">
-            <div class="field"><input id="f-first" type="text" autocomplete="given-name" placeholder="First name"><div class="err" id="e-first">Enter your first name.</div></div>
-            <div class="field"><input id="f-last" type="text" autocomplete="family-name" placeholder="Last name"><div class="err" id="e-last">Enter your last name.</div></div>
-          </div>
-          <div class="field"><input id="f-email" type="email" autocomplete="email" placeholder="Your email"><div class="err" id="e-email">Please enter a valid email.</div></div>
+          <div class="field"><input id="f-first" type="text" autocomplete="given-name" placeholder="First name"><div class="err" id="e-first">Enter your first name.</div></div>
           <div class="field"><input id="f-phone" type="tel" autocomplete="tel" placeholder="Your phone"><div class="err" id="e-phone">Please enter a valid phone number.</div></div>
-          <button class="btn big" type="submit" id="f-submit">See my options <span class="arrow">&rarr;</span></button>
+          <button class="btn big" type="submit" id="f-submit">See my number <span class="arrow">&rarr;</span></button>
           <p class="privacy">&#128274; Your info stays private. No spam, ever.</p>
         </form>
+        <div id="r-book" style="display:none">
+          <a class="btn big" id="r-book-btn" href="#">Book my free call <span class="arrow">&rarr;</span></a>
+          <p class="privacy">15-minute call with a licensed Canadian advisor. No pressure.</p>
+        </div>
         <div id="r-resource" style="display:none">
           <a class="btn big" id="r-resource-btn" href="#">See the free resource <span class="arrow">&rarr;</span></a>
           <p class="privacy">No pitch. Just the exact steps to get ready.</p>
@@ -446,7 +463,7 @@ src="https://www.facebook.com/tr?id=1100120314636630&ev=PageView&noscript=1"
   document.getElementById('intro-stats').innerHTML =
     '<div class="stat"><div class="sico" style="color:#12A150">'+icon('clock')+'</div><div class="num">1</div><div class="lbl">Min to finish</div></div>'+
     '<div class="stat"><div class="sico" style="color:#1FBF66">'+icon('target')+'</div><div class="num">6</div><div class="lbl">Questions</div></div>'+
-    '<div class="stat"><div class="sico" style="color:#12A150">'+icon('check')+'</div><div class="num">500+</div><div class="lbl">Covered</div></div>';
+    '<div class="stat"><div class="sico" style="color:#12A150">'+icon('check')+'</div><div class="num">500+</div><div class="lbl">Canadians covered</div></div>';
 
   function show(id){
     var l=document.querySelectorAll('.screen');
@@ -549,7 +566,7 @@ src="https://www.facebook.com/tr?id=1100120314636630&ev=PageView&noscript=1"
     evaluate();
     if(window.gtag){ gtag('event','quiz_complete',{qualified:state.qualified}); if(!state.qualified) gtag('event','quiz_disqualified',{dq_reason:state.dqReason||'other'}); }
     show('s-loading');
-    startLoader(function(){ renderResult(); show('s-result'); });
+    startLoader(function(){ if(state.qualified){ renderGate(); } else { renderResult(); } show('s-result'); });
   }
 
   function startLoader(done){
@@ -584,13 +601,37 @@ src="https://www.facebook.com/tr?id=1100120314636630&ev=PageView&noscript=1"
     other:{title:'Not the right fit right now.', msg:"Based on your answers, this isn't quite the right fit at the moment. No hard feelings."}
   };
 
+  function renderGate(){
+    calc();
+    var _rs=document.getElementById('s-result'); if(_rs) _rs.classList.remove('dq');
+    document.getElementById('lead-form').style.display='';
+    document.getElementById('r-book').style.display='none';
+    document.getElementById('r-resource').style.display='none';
+    document.getElementById('r-cta-ico').innerHTML='';
+    document.getElementById('r-top').innerHTML=
+      '<div class="r-eyebrow">&lt; The real number &gt;</div>'+
+      '<div class="r-script">We ran your numbers.</div>';
+    document.getElementById('r-diag-wrap').innerHTML=
+      '<div class="trustbox">'+
+        '<div class="tb-ico">'+icon('shield')+'</div>'+
+        '<div class="tb-txt">'+
+          '<div class="tb-head">Trusted by hundreds of self-employed Canadians</div>'+
+          '<div class="tb-sub">Real people across the country, protecting the income their families count on.</div>'+
+        '</div>'+
+      '</div>';
+    document.getElementById('r-form-title').textContent='See What You\'d Have To Replace.';
+    document.getElementById('r-form-sub').textContent='Drop your name and number and we\'ll show you exactly what\'s on the line if you couldn\'t work, and how little it costs to cover it.';
+    document.getElementById('f-submit').innerHTML='See my number <span class="arrow">&rarr;</span>';
+  }
+
   function renderResult(){
     var top=document.getElementById('r-top');
     var diagWrap=document.getElementById('r-diag-wrap');
     var _rs=document.getElementById('s-result'); if(_rs) _rs.classList.toggle('dq', !state.qualified);
     if(state.qualified){
       calc();
-      document.getElementById('lead-form').style.display='';
+      document.getElementById('lead-form').style.display='none';
+      document.getElementById('r-book').style.display='';
       document.getElementById('r-resource').style.display='none';
       document.getElementById('r-cta-ico').innerHTML='';
       top.innerHTML=
@@ -603,13 +644,19 @@ src="https://www.facebook.com/tr?id=1100120314636630&ev=PageView&noscript=1"
           '<div class="num-annual">'+money(state.result.monthly)+'+ a month</div>'+
           '<div class="num-annual-cap">For as long as you’re out</div>'+
         '</div>'+
-        '<p class="r-basis" style="text-align:center;color:var(--text-3);font-size:12.5px;line-height:1.55;max-width:470px;margin:16px auto 0">That’s about '+money(state.result.monthly)+' a month for the two years a serious disability commonly keeps someone out, and it often runs longer. Your savings would cover '+state.result.runway+'. After that, the mortgage, rent, and groceries don’t stop.</p>';
+        '<p class="r-basis" style="text-align:center;color:var(--text-3);font-size:12.5px;line-height:1.55;max-width:470px;margin:16px auto 0">Here’s the math: about '+money(state.result.monthly)+' a month, the low end of what you earn, over about two years, roughly how long a serious disability keeps the average person off work. That comes to '+money(state.result.replace)+', and it often runs longer. Your savings would cover'+state.result.runway+'. After that, the mortgage, rent, and groceries don’t stop.</p>';
       var ds=diagnosis(),html='<div class="diag"><h3>What’s leaving you exposed</h3><ul>';
       ds.forEach(function(t){ html+='<li><span class="dot">'+icon('zap')+'</span><span>'+t+'</span></li>'; });
       diagWrap.innerHTML=html+'</ul></div>';
       document.getElementById('r-form-title').textContent='See How Little It Costs To Cover This.';
-      document.getElementById('r-form-sub').textContent='Enter your details and see real income protection options and what they\'d actually cost you. A licensed advisor walks you through it, no pressure, no obligation, no jargon.';
-      document.getElementById('f-submit').innerHTML='See my options <span class="arrow">&rarr;</span>';
+      document.getElementById('r-form-sub').textContent='You\'ve got your number. Book a free 15-minute call with a licensed Canadian advisor to see how little it costs to protect it.';
+      var c=state.contact||{}, qp=new URLSearchParams();
+      if(c.firstName) qp.set('first_name',c.firstName);
+      if(c.phone) qp.set('phone',c.phone);
+      if(state.result&&state.result.monthly) qp.set('est',state.result.monthly);
+      Object.keys(state.tracking).forEach(function(k){ qp.set(k,state.tracking[k]); });
+      var dest=(CFG.BOOKING_PAGE_URL||'booking.html');
+      document.getElementById('r-book-btn').setAttribute('href', dest+(dest.indexOf('?')>-1?'&':'?')+qp.toString());
       countUp(document.getElementById('r-replace'), state.result.replace);
     } else {
       var m=DQ_MSG[state.dqReason]||DQ_MSG.other;
@@ -617,6 +664,7 @@ src="https://www.facebook.com/tr?id=1100120314636630&ev=PageView&noscript=1"
       diagWrap.innerHTML='';
       document.getElementById('r-cta-ico').innerHTML=icon('shield');
       document.getElementById('lead-form').style.display='none';
+      document.getElementById('r-book').style.display='none';
       document.getElementById('r-resource').style.display='';
       document.getElementById('r-form-title').textContent=m.title;
       document.getElementById('r-form-sub').textContent=m.msg;
@@ -679,46 +727,49 @@ src="https://www.facebook.com/tr?id=1100120314636630&ev=PageView&noscript=1"
     });
   })();
 
-  document.getElementById('lead-form').addEventListener('submit',async function(e){
+  document.getElementById('lead-form').addEventListener('submit',function(e){
     e.preventDefault();
     var first=document.getElementById('f-first').value.trim();
-    var last=document.getElementById('f-last').value.trim();
-    var email=document.getElementById('f-email').value.trim();
     var phone=document.getElementById('f-phone').value.trim();
     var ok=true;
     function mark(id,eid,good){ document.getElementById(id).classList.toggle('invalid',!good); document.getElementById(eid).classList.toggle('show',!good); if(!good) ok=false; }
     mark('f-first','e-first',first.length>=1);
-    mark('f-last','e-last',last.length>=1);
-    mark('f-email','e-email',validEmail(email));
     mark('f-phone','e-phone',validPhone(phone));
     if(!ok) return;
-    state.contact={firstName:first,lastName:last,email:email,phone:phone};
-    var sendP=sendLead();
-    if(state.qualified){
-      if(window.gtag){ gtag('event','lead_submit',{value:(state.result&&state.result.monthly)||0}); }
-      var c=state.contact, qp=new URLSearchParams();
-      if(c.firstName) qp.set('first_name',c.firstName);
-      if(c.lastName) qp.set('last_name',c.lastName);
-      if(c.email) qp.set('email',c.email);
-      if(c.phone) qp.set('phone',c.phone);
-      if(state.result&&state.result.monthly) qp.set('est',state.result.monthly);
-      Object.keys(state.tracking).forEach(function(k){ qp.set(k,state.tracking[k]); });
-      var dest=(CFG.BOOKING_PAGE_URL||'booking.html');
-      try{ await Promise.race([sendP, new Promise(function(res){setTimeout(res,2000);})]); }catch(_){ }
-      window.location.href=dest+(dest.indexOf('?')>-1?'&':'?')+qp.toString();
-      return;
-    } else {
-      document.getElementById('thanks-ico').innerHTML=icon('shield');
-      document.getElementById('thanks-title').textContent='Thanks, '+first+'.';
-      var m=DQ_MSG[state.dqReason]||DQ_MSG.other;
-      document.getElementById('thanks-msg').textContent="We've saved your details. If anything changes, come back any time. "+m.msg;
-      show('s-thanks');
-    }
+    state.contact={firstName:first,lastName:'',email:'',phone:phone};
+    sendLead();
+    if(window.gtag){ gtag('event','lead_submit',{value:(state.result&&state.result.monthly)||0}); }
+    renderResult();
+    show('s-result');
   });
 
+  // ---------- embedded first question on the landing ----------
+  (function(){
+    var Q1=QUESTIONS[0], wrap=document.getElementById('intro-q-opts');
+    var lbl=document.getElementById('intro-qlabel'); if(lbl) lbl.textContent=Q1.q;
+    if(!wrap) return;
+    Q1.opts.forEach(function(o,idx){
+      var b=document.createElement('button'); b.type='button'; b.className='opt';
+      var oico=document.createElement('span'); oico.className='oico'; oico.innerHTML=icon(o.ic);
+      var __c=PALETTE[idx%PALETTE.length]; oico.style.color=__c; oico.style.background=__c+'22'; oico.style.borderColor=__c+'55';
+      var otxt=document.createElement('span'); otxt.className='otxt';
+      var ot=document.createElement('span'); ot.className='ot'; ot.textContent=o.t; otxt.appendChild(ot);
+      if(o.s){ var os=document.createElement('span'); os.className='os'; os.textContent=o.s; otxt.appendChild(os); }
+      var rad=document.createElement('span'); rad.className='radio';
+      b.appendChild(oico); b.appendChild(otxt); b.appendChild(rad);
+      b.onclick=function(){
+        if(window.gtag){ gtag('event','quiz_start'); gtag('event','quiz_answer',{step:1,question:Q1.id,answer:o.t}); }
+        state.answers[Q1.id]=o.v;
+        state.i=1; state.dir=1;
+        show('s-quiz'); renderQuestion();
+      };
+      wrap.appendChild(b);
+    });
+  })();
+
   window.Funnel={
-    start:function(){ if(window.gtag) gtag('event','quiz_start'); state.i=0; state.dir=1; renderQuestion(); show('s-quiz'); },
-    back:function(){ state.dir=-1; if(state.i>0){ state.i--; renderQuestion(); } else { show('s-intro'); } }
+    start:function(){ if(window.gtag) gtag('event','quiz_start'); state.i=1; state.dir=1; renderQuestion(); show('s-quiz'); },
+    back:function(){ state.dir=-1; if(state.i>1){ state.i--; renderQuestion(); } else { show('s-intro'); } }
   };
 
   document.addEventListener('keydown',function(e){
