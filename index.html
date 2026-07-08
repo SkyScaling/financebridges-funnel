@@ -743,6 +743,7 @@ src="https://www.facebook.com/tr?id=1100120314636630&ev=PageView&noscript=1"
     state.contact={firstName:first,lastName:'',email:'',phone:phone};
     sendLead();
     if(window.gtag){ gtag('event','lead_submit',{value:(state.result&&state.result.monthly)||0}); }
+    if(window.fbq){ fbq('track','SubmitApplication'); }
     renderResult();
     show('s-result');
   });
