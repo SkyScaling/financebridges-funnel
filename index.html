@@ -537,7 +537,12 @@ src="https://www.facebook.com/tr?id=1100120314636630&ev=PageView&noscript=1"
   function calc(){
     var a=state.answers;
     /* Hero = a full year of their own income, exposed if they couldn't work.
-       Runway = how long their savings would hold, used to twist the knife. */
+       Runway = how long their savings would hold, used to twist the knife.
+       Every value below is the BOTTOM of its bracket, so the number we show is
+       never more than they earn. The one exception is u4k ("Under $4,000"),
+       which is open-ended at the bottom, so it uses an estimate. That's why the
+       result copy says "based on the income range you picked" and not "the low
+       end of what you earn" -- the latter was false for the u4k bracket. */
     var lowMap={u4k:3000,m4_7:4000,m7_10:7000,m10_20:10000,m20plus:20000};
     var monthly=lowMap[a.income]||4000;
     var annual=monthly*12;
@@ -648,7 +653,7 @@ src="https://www.facebook.com/tr?id=1100120314636630&ev=PageView&noscript=1"
           '<div class="num-annual">'+money(state.result.monthly)+'+ a month</div>'+
           '<div class="num-annual-cap">For as long as you’re out</div>'+
         '</div>'+
-        '<p class="r-basis" style="text-align:center;color:var(--text-3);font-size:12.5px;line-height:1.55;max-width:470px;margin:16px auto 0">Here’s the math: about '+money(state.result.monthly)+' a month, the low end of what you earn, over about two years, roughly how long a serious disability keeps the average person off work. That comes to '+money(state.result.replace)+', and it often runs longer. Your savings would cover '+state.result.runway+'. After that, the mortgage, rent, and groceries don’t stop.</p>';
+        '<p class="r-basis" style="text-align:center;color:var(--text-3);font-size:12.5px;line-height:1.55;max-width:470px;margin:16px auto 0">Here’s the math: about '+money(state.result.monthly)+' a month, based on the income range you picked, over about two years, roughly how long a serious disability keeps the average person off work. That comes to '+money(state.result.replace)+', and it often runs longer. Your savings would cover '+state.result.runway+'. After that, the mortgage, rent, and groceries don’t stop.</p>';
       var ds=diagnosis(),html='<div class="diag"><h3>What’s leaving you exposed</h3><ul>';
       ds.forEach(function(t){ html+='<li><span class="dot">'+icon('zap')+'</span><span>'+t+'</span></li>'; });
       diagWrap.innerHTML=html+'</ul></div>';
